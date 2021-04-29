@@ -1,0 +1,15 @@
+div.start-message{
+  background: #FAFAFA;
+  height: 695px;
+}
+
+p.text{
+  font-family: Rubik;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 24px;
+  line-height: 28px;
+  color: #848484;
+  text-align: center;
+  padding-top: 350px;
+}

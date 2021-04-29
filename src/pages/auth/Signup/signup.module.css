@@ -1,0 +1,105 @@
+div.main{
+  background-color: #E5E5E5;
+  /* height: 695px; */
+  padding-top: 100px;
+  padding-bottom: 100px;
+}
+
+div.form-container{
+  background: #FFFFFF;
+  box-shadow: 0px 20px 20px rgba(126, 152, 223, 0.05);
+  border-radius: 30px;
+  width: 500px;
+  height: 710px;
+  /* padding-left: 56px; */
+  margin-left: auto;
+  margin-right: auto;
+  font-family: 'Rubik';
+}
+
+p.title{
+  font-family: Rubik;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 22px;
+  line-height: 26px;
+  text-align: center;
+  letter-spacing: -0.165px;
+  color: #7E98DF;
+  padding-top: 42px;
+}
+
+p.teks{
+  font-family: Rubik;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 17px;
+  color: #232323;
+  margin-left: 55px;
+  margin-bottom: 15px;
+}
+
+p.name{
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 17px;
+  color: #848484;
+  opacity: 0.75;
+  position: relative;
+  top: 15px;
+}
+
+form.form-register{
+  margin-left: 55px;
+}
+
+form.form-register p{
+  font-family: Rubik;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 17px;
+  color: #848484;
+  opacity: 0.75;
+}
+
+form.form-register input.form-control{
+  width: 360px;
+  height: 50px;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-radius: 0%;
+  border-bottom: 1px solid #232323;
+  padding: 0;
+  color: #232323;
+  font-weight: 500;
+}
+
+button.btn-auth{
+  width: 360px;
+  height: 60px;
+  background: #7E98DF;
+  border-radius: 70px;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 19px;
+  text-align: center;
+  color: #FFFFFF;
+}
+
+button.btn-auth:hover{
+  background-color: black;
+  color: white;
+}
+
+p.register-teks{
+  font-size: 16px;
+  line-height: 19px;
+  text-align: center;
+  padding-left: 0px;
+  color: #848484;
+  margin-top: 30px;
+}
