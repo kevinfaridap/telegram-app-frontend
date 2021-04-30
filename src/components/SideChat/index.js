@@ -1,7 +1,7 @@
 import React from 'react'
 import style from './sidechat.module.css'
 
-function SideChat() {
+function SideChat({receivername}) {
   return (
     <div>
       <div className={style["side-chat"]}>
@@ -32,7 +32,7 @@ function SideChat() {
               <img className={style["user-img"]} src="https://img.icons8.com/bubbles/2x/user-male.png" alt=""/>
             </div>
             <div className="col">
-              <p className={style["user-name"]}>Theresa Web</p>
+              <p className={style["user-name"]}>{receivername}</p>
               <br/>
               <p className={style["message"]}>Hey you !</p>
             </div>
