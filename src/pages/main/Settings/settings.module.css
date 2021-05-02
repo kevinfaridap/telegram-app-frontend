@@ -1,0 +1,294 @@
+div.chat{
+    margin: 0;
+    padding: 0;
+}
+
+
+/* Side Chat */
+div.side-chat{
+    background-color: white;
+    padding-top: 45px;
+    font-family: Rubik;
+  }
+  
+  h5.title{
+    font-family: Rubik;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 29px;
+    line-height: 34px;
+    /* text-align: center; */
+    letter-spacing: -0.165px;
+    color: #7E98DF;
+  }
+
+  div.btn-menu{
+    position: relative;
+    top: -40px;
+    right: -220px;
+  }
+
+  div.drop-menu{
+    background: #7E98DF;
+    border-radius: 35px 10px 35px 35px;
+    font-family: Rubik;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 19px;
+    letter-spacing: -0.165px;
+    color: #FFFFFF;
+  }
+
+  div.drop-menu button{
+    font-family: Rubik;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 19px;
+    letter-spacing: -0.165px;
+    color: #FFFFFF;
+  }
+  
+  p.username{
+    font-family: Rubik;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 28px;
+    color: #7E98DF;
+    text-align: center;
+  }
+  
+  input.form-profile-username{
+    border: none;
+    text-align: center;
+    font-family: Rubik;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 28px;
+    color: #7E98DF;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  
+
+
+
+  img.user-img{
+    width: 84px;
+    height: 84px;
+    border-radius: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: -30px;
+  }
+
+
+  p.fullName{
+    font-family: Rubik;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 26px;
+    letter-spacing: -0.165px;
+    color: #232323;
+    text-align: center;
+  }
+
+  input.form-profile-fullname{
+    border: none;
+    font-family: Rubik;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 26px;
+    letter-spacing: -0.165px;
+    color: #232323;
+    text-align: center;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: -45px;
+  }
+
+  p.acc{
+    font-family: Rubik;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 19px;
+    line-height: 23px;
+    color: #232323;
+    position: relative;
+    left: 10px;
+  }
+
+  p.phonenumber{
+    font-family: Rubik;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 19px;
+    letter-spacing: 1.335px;
+    color: #232323;
+    position: relative;
+    top: -25px;
+  }
+
+  input.form-profile-phone{
+    border: none;
+    border-bottom: 2px solid #F6F6F6;
+    position: relative;
+    top: -30px;
+    text-align: start;
+  }
+
+  input.form-profile-username{
+    border: none;
+    font-family: Rubik;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 19px;
+    text-align: start;
+    color: #232323;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: -35px;
+  }
+
+  p.username-edit{
+    font-family: Rubik;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 19px;
+    letter-spacing: -0.17px;
+    color: #afafaf;
+    position: relative;
+    left: 15px;
+    top: -15px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #F6F6F6;
+  }
+
+  textarea.form-profile-bio{
+    border: none;
+    position: relative;
+    top: -30px;
+  }
+  
+  textarea.form-profile-bio:focus{
+    outline: none;
+  }
+  
+
+  p.bio{
+    font-family: Rubik;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 19px;
+    letter-spacing: -0.17px;
+    color: #afafaf;
+    margin-top: -45px;
+    position:relative;
+    left: 13px;
+  }
+
+  button.btn-change-profule{
+    border: 2px solid #7E98DF;
+    background-color:transparent;
+    border-radius: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #7E98DF;
+    font-family: Rubik;
+    font-size: 15px;
+    font-weight: 400;
+  }
+
+  button.btn-change-profule:hover{
+    background-color: #7E98DF;
+    color: white;
+  }
+
+  input.form-img{
+    position: relative;
+    border: none;
+    color: transparent;
+    width: 65px;
+    height: 65px;
+    background-color: transparent;
+    position: relative;
+    left: 110px;
+    top: -70px;
+  }
+
+  input.form-img::-webkit-file-upload-button{
+    background-color: transparent;
+    color: transparent;
+    border: none;
+  }
+
+
+  /* Akhir Sidechat */
+
+  @media only screen and (max-width: 600px) {
+    div.btn-menu{
+      position: relative;
+      top: -40px;
+      right: 40px;
+      float: right;
+    }
+  
+    div.drop-menu{
+      background: #7E98DF;
+      border-radius: 35px 10px 35px 35px;
+      font-family: Rubik;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 16px;
+      line-height: 19px;
+      letter-spacing: -0.165px;
+      color: #FFFFFF;
+    }
+  
+    div.drop-menu button{
+      font-family: Rubik;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 16px;
+      line-height: 19px;
+      letter-spacing: -0.165px;
+      color: #FFFFFF;
+    }
+
+    input.form-img{
+      position: relative;
+      border: none;
+      color: transparent;
+      width: 65px;
+      height: 65px;
+      background-color: transparent;
+      position: relative;
+      left: 215px;
+      top: -70px;
+    }
+
+    h5.title{
+      margin-left: 40px;
+    }
+
+    button.btn-change-profule{
+      margin-bottom: 40px;
+      margin-top: 30px;
+    }
+  }

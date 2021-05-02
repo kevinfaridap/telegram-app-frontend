@@ -17,7 +17,7 @@ div.side-chat{
     font-weight: 500;
     font-size: 29px;
     line-height: 34px;
-    text-align: center;
+    /* text-align: center; */
     letter-spacing: -0.165px;
     color: #7E98DF;
   }
@@ -30,8 +30,8 @@ div.side-chat{
   }
   
   img.user-img{
-    width: 64px;
-    height: 64px;
+    width: 54px;
+    height: 54px;
     border-radius: 20px;
     position: relative;
     left: -10px;
@@ -65,6 +65,92 @@ div.side-chat{
     float: left;
     top: -10px;
   }
+
+  .headline-chat{
+    background-color: white;
+    height: 100px;
+    border: none;
+  }
+
+  input.input-chat{
+    background: #FAFAFA;
+    border-radius: 15px;
+    font-family: Rubik;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 19px;
+    letter-spacing: -0.165px;
+    color: #848484;
+  }
+
+  div.input-text{
+    position:fixed;
+    /* left:10px; */
+    bottom:10px;
+    width: 72%;
+
+  }
+
+  button.btn-send{
+    background-color: transparent;
+  }
+
+  ul.list-group{
+    overflow-y: auto; 
+    max-height: 640px;
+  }
+  ul.list-group::-webkit-scrollbar{
+    border: 0.5px transparent solid;
+    border-radius: 8px;
+  }
+  ul.list-group::-webkit-scrollbar-thumb {
+    background: transparent;
+  }
+  ul.list-group::-webkit-scrollbar-thumb:hover {
+    background: transparent;
+  }
+
+  .user-img-chat{
+    width: 50px;
+    height: 50px;
+    border-radius: 20px;
+ 
+  }
+
+  .list-group li{
+    border: none;
+  }
+
+  div.btn-menu{
+    position: relative;
+    top: -40px;
+    right: -220px;
+  }
+
+  div.drop-menu{
+    background: #7E98DF;
+    border-radius: 35px 10px 35px 35px;
+    font-family: Rubik;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 19px;
+    letter-spacing: -0.165px;
+    color: #FFFFFF;
+  }
+
+  div.drop-menu button{
+    font-family: Rubik;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 19px;
+    letter-spacing: -0.165px;
+    color: #FFFFFF;
+  }
+
+
 
 
   /* Akhir Sidechat */

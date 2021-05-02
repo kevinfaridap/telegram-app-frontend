@@ -6,6 +6,8 @@ import axiosApiInstance from '../../../helpers/axios'
 import qs from 'query-string'
 import axios from 'axios'
 import {Link, useHistory} from 'react-router-dom'
+import {menu} from '../../../assets/images'
+import swal from 'sweetalert'
 
 function Chat({ match, location, socket }) {
   const history = useHistory();
@@ -102,18 +104,37 @@ function Chat({ match, location, socket }) {
     })
   }
 
-  
-  
   // console.log(allUser[0].id, 'asdasdasf');
+  const handleSetting = () =>{
+    history.push('/setting')
+  }
+
+  const handleLogout = () =>{
+    localStorage.removeItem("token");
+    swal("You Have Been Logged Out!")
+    history.push('/signin')
+  }
 
 
   return (
     <div>
         <div className={[["row"], style["chat"]].join(' ')}>
-          <div className="col-lg-3">
+          <div className="col-lg-3 ">
             <div className={style["side-chat"]}>
               <div className="container">
                 <h5 className={style["title"]}>Telegram</h5>
+
+                <div className={[style["btn-menu"], ["dropright"]].join(' ')}>
+                  {/* <button type="button" className="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> */}
+                    <img src={menu} alt="" className="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"/>
+                  {/* </button> */}
+                  <div className={[["dropdown-menu"], style["drop-menu"]].join(' ')} >
+                    <button className="dropdown-item" type="button" onClick={handleSetting}>Settings</button>
+                    <button className="dropdown-item" type="button" onClick={handleLogout}>Logout</button>
+                  </div>
+                </div>
+
+
                 <input 
                   className={[["form-control"], style["form-search"]].join(' ')} 
                   type="search" 
@@ -122,15 +143,15 @@ function Chat({ match, location, socket }) {
                 >
                 </input>
                 <br/>
-                <div className="row">
-                  <div className="col">
+                <div className="row ml-4">
+                  <div className="col-4 col-lg">
                     <p className="all">All</p>
                   </div>
-                  <div className="col">
+                  <div className="col-4 col-lg">
                     <p className="important">Important</p>
                   </div>
-                  <div className="col">
-                  <p className="unread">Unread</p>
+                  <div className="col-4 col-lg">
+                  <p className={style["unread"]}>Unread</p>
                   </div>
                 </div>
                 <br/>
@@ -139,7 +160,8 @@ function Chat({ match, location, socket }) {
                   <>
                     <div className="row">
                       <div className="col">
-                        <img className={style["user-img"]} src="https://img.icons8.com/bubbles/2x/user-male.png" alt=""/>
+                      {/* https://img.icons8.com/bubbles/2x/user-male.png */}
+                        <img className={style["user-img"]} src={item.image} alt=""/>
                       </div>
                       <div className="col">
                         <p className={style["user-name"]} onClick={() => history.push(`/chatid/${item.id}`)} >{item.firstName}</p>
@@ -147,7 +169,7 @@ function Chat({ match, location, socket }) {
                         <p className={style["message"]}>Hey you !</p>
                       </div>
                       <div className="col">
-                        <p className="time">15:30</p>
+                        <p className={style["time"]}>15:30</p>
                       </div>
                     </div>
                   </>
@@ -157,7 +179,7 @@ function Chat({ match, location, socket }) {
               </div> 
             </div>
           </div>
-          <div className="col">
+          <div className="col-lg">
             {/* <div className="wrapper-chat">
             <ul className="list-group">
               
@@ -174,7 +196,7 @@ function Chat({ match, location, socket }) {
               </div>
             </div> */}
           
-            <StartMessage />
+            <StartMessage teks="Please select a chat to start messaging" />
           </div>
         </div>
 

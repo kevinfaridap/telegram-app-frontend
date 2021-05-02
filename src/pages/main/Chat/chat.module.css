@@ -17,7 +17,7 @@ div.side-chat{
     font-weight: 500;
     font-size: 29px;
     line-height: 34px;
-    text-align: center;
+    /* text-align: center; */
     letter-spacing: -0.165px;
     color: #7E98DF;
   }
@@ -30,8 +30,8 @@ div.side-chat{
   }
   
   img.user-img{
-    width: 64px;
-    height: 64px;
+    width: 54px;
+    height: 54px;
     border-radius: 20px;
     position: relative;
     left: -10px;
@@ -66,5 +66,130 @@ div.side-chat{
     top: -10px;
   }
 
+  div.btn-menu{
+    position: relative;
+    top: -40px;
+    right: -220px;
+  }
+
+  div.drop-menu{
+    background: #7E98DF;
+    border-radius: 35px 10px 35px 35px;
+    font-family: Rubik;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 19px;
+    letter-spacing: -0.165px;
+    color: #FFFFFF;
+  }
+
+  div.drop-menu button{
+    font-family: Rubik;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 19px;
+    letter-spacing: -0.165px;
+    color: #FFFFFF;
+  }
 
   /* Akhir Sidechat */
+
+
+  @media only screen and (max-width: 600px) {
+    div.side-chat{
+      background-color: white;
+      padding-top: 45px;
+      font-family: Rubik;
+    }
+    
+    h5.title{
+      font-family: Rubik;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 29px;
+      line-height: 34px;
+      letter-spacing: -0.165px;
+      color: #7E98DF;
+      margin-left: 30px;
+    }
+
+    div.btn-menu{
+      position: relative;
+      float: right;
+      right: 45px;
+    }
+  
+    div.drop-menu{
+      background: #7E98DF;
+      border-radius: 35px 10px 35px 35px;
+      font-family: Rubik;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 16px;
+      line-height: 19px;
+      letter-spacing: -0.165px;
+      color: #FFFFFF;
+    }
+  
+    div.drop-menu button{
+      font-family: Rubik;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 16px;
+      line-height: 19px;
+      letter-spacing: -0.165px;
+      color: #FFFFFF;
+    }
+
+    input.form-search{
+      display: none;
+    }
+
+    img.user-img{
+      margin-top: 20px;
+      width: 82px;
+      height: 82px;
+      border-radius: 30px;
+      margin-bottom: 30px;
+      margin-left: 40px;
+    }
+    p.user-name{
+      font-family: Rubik;
+      font-style: normal;
+      font-weight: 800;
+      font-size: 22px;
+      line-height: 26px;
+      letter-spacing: -0.165px;
+      color: #232323;
+      margin-left: 40px;
+      margin-top: 20px;
+    }
+    p.message{
+      font-family: Rubik;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 15px;
+      line-height: 18px;
+      letter-spacing: -0.165px;
+      color: #7E98DF;
+      margin-left: 40px;
+      margin-top: 10px;
+    }
+    p.time{
+      font-family: Rubik;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 16px;
+      line-height: 19px;
+      text-align: center;
+      letter-spacing: -0.165px;
+      color: #848484;
+      margin-top: 20px;
+    }
+
+    p.unread{
+      margin-left: 30px;
+    }
+  }

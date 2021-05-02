@@ -13,3 +13,9 @@ p.text{
   text-align: center;
   padding-top: 350px;
 }
+
+@media only screen and (max-width: 600px) {
+  div.start-message{
+    display: none;
+  }
+}

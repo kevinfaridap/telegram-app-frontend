@@ -6,6 +6,7 @@ import Chat from '../../pages/main/Chat'
 import Verify from '../../pages/main/Verify'
 import io from 'socket.io-client'
 import ChatId from '../../pages/main/ChatId'
+import Settings from '../../pages/main/Settings'
 
 function MainRoute() {
   const [socket, setSocket] = useState(null)
@@ -34,6 +35,7 @@ function MainRoute() {
           {/* <Route path="/chat" component={Chat} /> */}
           <Route path="/chat" render={(props) => <Chat {...props} socket={socket}/>} />
           <Route path="/chatid/:idreceiver" render={(props) => <ChatId {...props} socket={socket}/>} />
+          <Route path="/setting" render={(props) => <Settings {...props} socket={socket}/>} />
           
 
           {/* <Route exact path="/" component={Home} /> */}

@@ -4,7 +4,7 @@ import qs from 'query-string'
 import axiosApiInstance from '../../../helpers/axios'
 
 
-function StartMessage({ match, location, socket }) {
+function StartMessage({ match, location, socket, teks }) {
   // Pindah ke Chat
   // const [user, setUser] = useState([]);
 
@@ -30,7 +30,7 @@ function StartMessage({ match, location, socket }) {
   return (
     <div>
       <div className={style["start-message"]}>
-        <p className={style["text"]}>Please select a chat to start messaging</p>
+        <p className={style["text"]}>{teks}</p>
         
       </div>
     </div>

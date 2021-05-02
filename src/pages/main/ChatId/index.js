@@ -6,14 +6,16 @@ import axiosApiInstance from '../../../helpers/axios'
 import qs from 'query-string'
 import axios from 'axios'
 import {Link, useHistory} from 'react-router-dom'
+import {menu} from '../../../assets/images'
+import swal from 'sweetalert'
 
 function ChatId({ match, location, socket}) {
   const history = useHistory();
   const [user, setUser] = useState([]);
   const [allUser, setAllUser] = useState([]);
-  // const [recevierId, setReceiverId] = useState
-  const [message, setMessage] = useState('');
   const [messages, setMessages] = useState([]);
+  const [dataReceiverById, setDataReceiverById] = useState([])
+  const [setting, setSetting] = useState(true)
   
   const idRec = match.params.idreceiver;
   const idsender = `${user.id}`
@@ -24,9 +26,6 @@ function ChatId({ match, location, socket}) {
     idReceiver: idRec,
     body: ''
   })
-    // console.log(idsender, 'iuser');
-    // console.log(idRec, 'idrec');
-    // console.log(sendMessage.body, 'isinya');
   
   const handleInputText = (e) =>{
     setSendMessage({
@@ -38,13 +37,11 @@ function ChatId({ match, location, socket}) {
   useEffect(() => {
     const urlQuery = qs.parse(location.search)
     // setUser(urlQuery.username)
-
     if(socket){
       socket.on('receiverMessage', (dataMessage) => {
         setMessages([...messages, dataMessage])
       })
     }
-    
   }, [socket, messages])
 
 
@@ -58,7 +55,6 @@ function ChatId({ match, location, socket}) {
       console.log(dataUser.id, 'userid = initialsocket');
       if(socket ||  userid != null){
         socket.emit('initialUser', dataUser.id)
-    
       }
     })
     .catch((err)=>{
@@ -70,7 +66,6 @@ function ChatId({ match, location, socket}) {
     axiosApiInstance.get(`http://localhost:8081/v1/users`)
     .then((res)=>{
       const dataFriend = res.data.data
-  
       setAllUser(dataFriend)
     })
     .catch((err)=>{
@@ -79,28 +74,12 @@ function ChatId({ match, location, socket}) {
   }, [])
 
 
-  // console.log(user.id);
   const userid = user.id
-  // useEffect(()=>{
-  //   const urlQuery = qs.parse(location.search)
-
-
-  //   console.log(userid, 'check');
-  //   if(socket ||  userid != null){
-      
-  //   } else if(socket || userid === undefined){
-      
-  //   }
-
-  // }, [socket])
-
+  // console.log(user.id);
 
   const handleSendMessage = (e)=>{
-    const room = match.params.room
     const kirimpesan = sendMessage.body
     const idRec = match.params.idreceiver;
-    // console.log(kirimpesan);
-    
     e.preventDefault();
     socket.emit('sendMessage', {
       body: kirimpesan,
@@ -109,23 +88,31 @@ function ChatId({ match, location, socket}) {
     }, (data)=>{
       setMessages([...messages, data]) 
     })
-    // axios.post(`http://localhost:8081/v1/message/sendmessage`, sendMessage)
-    //   .then((res) => {
-    //       console.log(res.data, 'data handle chat ')
-           
-            
-           
-          
-    //   })
-    //   .catch((err) => {
-    //       console.log(err);
-    //   }) 
   }
 
+  useEffect(()=>{
+    axiosApiInstance.get(`http://localhost:8081/v1/users/${idRec}`)
+    .then((res)=>{
+      const dataReceive = res.data.data[0]
+      // console.log('kit', dataReceive.firstName);
+      setDataReceiverById(dataReceive)
+    })
+    .catch((err)=>{
+      console.log(err);
+    })
+  }, [])
   
-  
-  // console.log(allUser[0].id, 'asdasdasf');
 
+  // console.log(allUser[0].id, 'asdasdasf');
+  const handleSetting = () =>{
+    history.push('/setting')
+  }
+
+  const handleLogout = () =>{
+    localStorage.removeItem("token");
+    swal("You Have Been Logged Out!")
+    history.push('/signin')
+  }
 
   return (
     <div>
@@ -135,8 +122,18 @@ function ChatId({ match, location, socket}) {
               <div className="container">
                 <Link to="/chat">
                   <h5 className={style["title"]}>Telegram</h5>
-
                 </Link>
+                
+                <div className={[style["btn-menu"], ["dropright"]].join(' ')}>
+                  {/* <button type="button" className="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> */}
+                    <img src={menu} alt="" className="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"/>
+                  {/* </button> */}
+                  <div className={[["dropdown-menu"], style["drop-menu"]].join(' ')} >
+                    <button className="dropdown-item" type="button" onClick={handleSetting}>Settings</button>
+                    <button className="dropdown-item" type="button" onClick={handleLogout}>Logout</button>
+                  </div>
+                </div>
+
                 <input 
                   className={[["form-control"], style["form-search"]].join(' ')} 
                   type="search" 
@@ -162,7 +159,7 @@ function ChatId({ match, location, socket}) {
                   <>
                     <div className="row">
                       <div className="col">
-                        <img className={style["user-img"]} src="https://img.icons8.com/bubbles/2x/user-male.png" alt=""/>
+                        <img className={style["user-img"]} src={item.image} alt=""/>
                       </div>
                       <div className="col">
                         <p className={style["user-name"]}  onClick={() => history.push(`/chatid/${item.id}`)} >{item.firstName}</p>
@@ -183,31 +180,31 @@ function ChatId({ match, location, socket}) {
             </div>
           </div>
           <div className="col">
-            <div className="wrapper-chat">
-            <ul className="list-group">
 
-                <li className="list-group-item active" key="" aria-current="true">{idRec}</li>
+              <ul className={style["list-group"]}>
+
+                  <li className={[["list-group-item"], style["headline-chat"]].join(' ')} key="" aria-current="true">{idRec}</li>
+              
+                {messages.map((item, index)=>
+                  
+                  <li className={`list-group-item ${user.id  === item.idUser? 'text-right': 'text-left'}`} key={index}>{item.body +' | '+item.createdAt} </li>
+                )}
+              </ul>
+
+
             
-              {messages.map((item, index)=>
-                <li className={`list-group-item`} key={index}>{item.body +' | '+item.createdAt}</li>
-              )}
-            </ul>
-            </div>
-            <div className="input-group mb-3">
+            <div className={[["input-group"], style["input-text"]].join(' ')}>
               <input 
                 type="text" 
-                className="form-control" 
-                placeholder="text here" 
+                className={[["form-control"], style["input-chat"]].join(' ')} 
+                placeholder="Type your message here..." 
                 name="body"
                 id="body"
                 value={sendMessage.body}
                 onChange={(e)=>handleInputText(e)} 
-                // value={formTransfer.pin}
-                // onChange={(e)=>handleFormTransfer(e)}
-                // onChange={(e)=>setMessage(e.target.value)} 
               />
               <div className="input-group-append">
-                <button className="btn btn-outline-secondary" type="button" id="button-addon2" onClick={handleSendMessage}>Kirim</button>
+                <button className={[["btn"], style["btn-send"]].join(' ')} type="button" id="button-addon2" onClick={handleSendMessage}>Send</button>
               </div>
             </div>
           
