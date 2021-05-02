@@ -8,8 +8,8 @@ Telegram App adalah aplikasi layanan chat realtime yang memberi kemudahan pada p
 
 Masukkan Screenshot dibawah...
 
-### `Page Telegram App`
-
+### `Register Page Telegram App`
+![V1  - Register](https://user-images.githubusercontent.com/74039235/116825876-71b73c00-abbb-11eb-8946-4950e7f3596e.png)
 
 ## Link:
 
