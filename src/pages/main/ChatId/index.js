@@ -5,7 +5,7 @@ import style from './chatid.module.css'
 import axiosApiInstance from '../../../helpers/axios'
 import qs from 'query-string'
 import axios from 'axios'
-import {Link, useHistory} from 'react-router-dom'
+import {Link, useHistory, useLocation} from 'react-router-dom'
 import {menu} from '../../../assets/images'
 import swal from 'sweetalert'
 
@@ -20,6 +20,7 @@ function ChatId({ match, location, socket}) {
   const idRec = match.params.idreceiver;
   const idsender = `${user.id}`
  
+  const {search, pathname} = useLocation();
   
   const [sendMessage, setSendMessage] = useState({
     idUser: idsender,
@@ -35,8 +36,6 @@ function ChatId({ match, location, socket}) {
   }
 
   useEffect(() => {
-    const urlQuery = qs.parse(location.search)
-    // setUser(urlQuery.username)
     if(socket){
       socket.on('receiverMessage', (dataMessage) => {
         setMessages([...messages, dataMessage])
@@ -46,7 +45,7 @@ function ChatId({ match, location, socket}) {
 
 
   useEffect(()=>{
-    axiosApiInstance.get(`http://localhost:8081/v1/users/profile`)
+    axiosApiInstance.get(`${process.env.REACT_APP_API}/users/profile`)
     .then((res)=>{
       const dataUser = res.data.data[0]
       console.log('isasdasd' , dataUser.id);
@@ -63,7 +62,7 @@ function ChatId({ match, location, socket}) {
   }, [])
 
   useEffect(()=>{
-    axiosApiInstance.get(`http://localhost:8081/v1/users`)
+    axiosApiInstance.get(`${process.env.REACT_APP_API}/users`)
     .then((res)=>{
       const dataFriend = res.data.data
       setAllUser(dataFriend)
@@ -73,9 +72,7 @@ function ChatId({ match, location, socket}) {
     })
   }, [])
 
-
   const userid = user.id
-  // console.log(user.id);
 
   const handleSendMessage = (e)=>{
     const kirimpesan = sendMessage.body
@@ -91,19 +88,19 @@ function ChatId({ match, location, socket}) {
   }
 
   useEffect(()=>{
-    axiosApiInstance.get(`http://localhost:8081/v1/users/${idRec}`)
+    setMessages([])
+    axiosApiInstance.get(`${process.env.REACT_APP_API}/users/${idRec}`)
     .then((res)=>{
       const dataReceive = res.data.data[0]
-      // console.log('kit', dataReceive.firstName);
       setDataReceiverById(dataReceive)
+      
     })
     .catch((err)=>{
       console.log(err);
     })
-  }, [])
+  }, [pathname])
+  // pathname ini biar pesan nya ga masuk semua saat pindah revuser, disini setMesaage([]) dijadiin gini
   
-
-  // console.log(allUser[0].id, 'asdasdasf');
   const handleSetting = () =>{
     history.push('/setting')
   }
@@ -182,8 +179,9 @@ function ChatId({ match, location, socket}) {
           <div className="col">
 
               <ul className={style["list-group"]}>
-
-                  <li className={[["list-group-item"], style["headline-chat"]].join(' ')} key="" aria-current="true">{idRec}</li>
+                  <li className={[["list-group-item"], style["headline-chat"]].join(' ')} key="" aria-current="true"><img src={dataReceiverById.image} alt=""/>  {dataReceiverById.firstName}</li>
+                  {/* <li className={[["list-group-item"], style["headline-chat"]].join(' ')} key="" aria-current="true">{idRec}</li> */}
+                  {/* <p>{JSON.stringify(dataReceiverById)}</p> */}
               
                 {messages.map((item, index)=>
                   

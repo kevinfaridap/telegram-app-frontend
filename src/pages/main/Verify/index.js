@@ -18,7 +18,7 @@ function Verify(props) {
 
   const handleVerify = (e)=>{
     e.preventDefault();
-    axios.put(`http://localhost:8081/v1/users/verify`, verifyAcc)
+    axios.put(`${process.env.REACT_APP_API}/users/verify`, verifyAcc)
       .then((res) => {
         console.log(res);
         swal('Success Verify')

@@ -25,7 +25,7 @@ function Signup() {
   
     const handleSubmit = (e) => {
       e.preventDefault();
-      axios.post(`http://localhost:8081/v1/users/signup`, formUser)
+      axios.post(`${process.env.REACT_APP_API}/users/signup`, formUser)
       .then((res) => {
           // console.log(res.data.data, 'lihatttttttt')
           const dataRegis = res.data.data;

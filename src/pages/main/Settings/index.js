@@ -23,7 +23,7 @@ function Settings({ match, location, socket}) {
     username: user.username,
     phoneNumber: user.phoneNumber,
     image: user.image,
-    bio: user.bio
+    bio: ''
   })  
 
   const handleFormUpdate = (e) =>{
@@ -62,8 +62,12 @@ function Settings({ match, location, socket}) {
         image: user.image,
         bio: user.bio
       })
-      swal('Success Update Profile')
-      history.push('/chat')
+     
+      if(res.message === 'Success update data'){
+        swal(res.message)
+        history.push('/chat')
+      }
+      swal(res.message)
     })
     .catch((err)=>{
       console.log(err);
@@ -71,7 +75,7 @@ function Settings({ match, location, socket}) {
   }
 
   // const handleChangePassword = (e) =>{
-  //   axios.put(`http://localhost:8081/v1/users/${user.id}`, formUpdateProfile)
+  //   axios.put(`${process.env.REACT_APP_API}/users/${user.id}`, formUpdateProfile)
   //     .then((res) => {
   //         console.log(res.data)
   //         if(res.data === null){
@@ -89,17 +93,17 @@ function Settings({ match, location, socket}) {
 
 
   useEffect(()=>{
-    axiosApiInstance.get(`http://localhost:8081/v1/users/profile`)
+    axiosApiInstance.get(`${process.env.REACT_APP_API}/users/profile`)
     .then((res)=>{
       const dataUser = res.data.data[0]
-      console.log('isasdasd' , dataUser.id);
+      // console.log('isasdasd' , dataUser.id);
       setUser(dataUser)
 
     })
     .catch((err)=>{
       console.log(err);
     })
-  }, [user])
+  }, [])
 
  
 

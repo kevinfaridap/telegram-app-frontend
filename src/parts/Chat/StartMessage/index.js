@@ -9,7 +9,7 @@ function StartMessage({ match, location, socket, teks }) {
   // const [user, setUser] = useState([]);
 
   // useEffect(()=>{
-  //   axiosApiInstance.get(`http://localhost:8081/v1/users/profile`)
+  //   axiosApiInstance.get(`${process.env.REACT_APP_API}/users/profile`)
   //   .then((res)=>{
   //     const dataUser = res.data.data[0]
   //     setUser(dataUser)

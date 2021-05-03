@@ -16,6 +16,8 @@ function MainRoute() {
   const setupSocket = ()=>{
     console.log('hello setupSocket berjalan');
     const newSocket = io("http://localhost:8081")
+    // const newSocket = io(`${process.env.REACT_APP_SOCKET}`)
+    
 
     setSocket(newSocket)
   }

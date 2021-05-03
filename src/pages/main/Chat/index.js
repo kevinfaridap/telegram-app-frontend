@@ -13,11 +13,10 @@ function Chat({ match, location, socket }) {
   const history = useHistory();
   const [user, setUser] = useState([]);
   const [allUser, setAllUser] = useState([]);
-  // const [recevierId, setReceiverId] = useState
   const [message, setMessage] = useState('');
   const [messages, setMessages] = useState([]);
  
-//  console.log(user.id);
+
   
   const iduser = user.id
   
@@ -28,9 +27,6 @@ function Chat({ match, location, socket }) {
   })
 
   useEffect(() => {
-    const urlQuery = qs.parse(location.search)
-    // setUser(urlQuery.username)
-
     if(socket){
       socket.on('receiverMessage', (dataMessage) => {
         setMessages([...messages, dataMessage])
@@ -41,7 +37,7 @@ function Chat({ match, location, socket }) {
 
 
   useEffect(()=>{
-    axiosApiInstance.get(`http://localhost:8081/v1/users/profile`)
+    axiosApiInstance.get(`${process.env.REACT_APP_API}/users/profile`)
     .then((res)=>{
       const dataUser = res.data.data[0]
       setUser(dataUser)
@@ -52,7 +48,7 @@ function Chat({ match, location, socket }) {
   }, [])
 
   useEffect(()=>{
-    axiosApiInstance.get(`http://localhost:8081/v1/users`)
+    axiosApiInstance.get(`${process.env.REACT_APP_API}/users`)
     .then((res)=>{
       const dataFriend = res.data.data
   
@@ -65,7 +61,7 @@ function Chat({ match, location, socket }) {
 
 
   useEffect(()=>{
-    axios.post(`http://localhost:8081/v1/message/sendmessage`)
+    axios.post(`${process.env.REACT_APP_API}/message/sendmessage`)
     .then((res)=>{
       const sendMsg = res.data.data
   
@@ -86,11 +82,6 @@ function Chat({ match, location, socket }) {
       console.log(userid, 'userid di initialsocket');
       socket.emit('initialUser', userid)
     }
-    // if(socket && userid != null && found){
-    //   socket.emit('initialUser', userid)
-    // } else if(userid == null && !found){
-    //   window.location.reload();
-    // }
   }, [socket])
 
   const handleSendMessage = ()=>{
