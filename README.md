@@ -9,11 +9,23 @@ Telegram App adalah aplikasi layanan chat realtime yang memberi kemudahan pada p
 Masukkan Screenshot dibawah...
 
 ### `Register Page Telegram App`
-![V1  - Register](https://user-images.githubusercontent.com/74039235/116825876-71b73c00-abbb-11eb-8946-4950e7f3596e.png)
+![signup](https://user-images.githubusercontent.com/74039235/116845370-d603eb00-ac0f-11eb-80e9-40de4454a2ca.jpg)
 
 
 ### `Login Page Telegram App`
-![V1  - Login](https://user-images.githubusercontent.com/74039235/116825900-8d224700-abbb-11eb-901c-63c7bdcb8cc7.png)
+![signin](https://user-images.githubusercontent.com/74039235/116845369-d56b5480-ac0f-11eb-8acf-558422ca8b70.jpg)
+
+### `Chat Page Telegram App`
+![chat](https://user-images.githubusercontent.com/74039235/116845363-d13f3700-ac0f-11eb-8e17-dc3cbce6e3e3.jpg)
+
+### `Chatid Page Telegram App`
+![chatid](https://user-images.githubusercontent.com/74039235/116845366-d3a19100-ac0f-11eb-8a7b-beb449f4d7ce.jpg)
+
+### `Update Profile Page Telegram App`
+![setting](https://user-images.githubusercontent.com/74039235/116845367-d4d2be00-ac0f-11eb-8e25-f68a0b1b6d89.jpg)
+
+
+
 
 ## Link:
 
