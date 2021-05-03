@@ -27,7 +27,7 @@ axiosApiInstance.interceptors.response.use((response)=>{
     if (error.response.status === 401) {
         if(error.response.data.error.message === 'Invalid Signature!'){
             swal('Invalid Token !')
-            // history.push("/signin");
+            // history.push("/");
             if (typeof window !== "undefined") {
                 localStorage.removeItem('token')
                 

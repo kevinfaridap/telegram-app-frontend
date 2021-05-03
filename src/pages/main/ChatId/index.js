@@ -15,18 +15,18 @@ function ChatId({ match, location, socket}) {
   const [allUser, setAllUser] = useState([]);
   const [messages, setMessages] = useState([]);
   const [dataReceiverById, setDataReceiverById] = useState([])
-  const [setting, setSetting] = useState(true)
+  // const [setting, setSetting] = useState(true)
+  
   
   const idRec = match.params.idreceiver;
   const idsender = `${user.id}`
- 
   const {search, pathname} = useLocation();
   
-  const [sendMessage, setSendMessage] = useState({
+  const [sendMessage, setSendMessage] = useState([{
     idUser: idsender,
     idReceiver: idRec,
     body: ''
-  })
+  }])
   
   const handleInputText = (e) =>{
     setSendMessage({
@@ -48,7 +48,7 @@ function ChatId({ match, location, socket}) {
     axiosApiInstance.get(`${process.env.REACT_APP_API}/users/profile`)
     .then((res)=>{
       const dataUser = res.data.data[0]
-      console.log('isasdasd' , dataUser.id);
+      // console.log('isasdasd' , dataUser.id);
       setUser(dataUser)
 
       console.log(dataUser.id, 'userid = initialsocket');
@@ -93,7 +93,6 @@ function ChatId({ match, location, socket}) {
     .then((res)=>{
       const dataReceive = res.data.data[0]
       setDataReceiverById(dataReceive)
-      
     })
     .catch((err)=>{
       console.log(err);
@@ -101,6 +100,9 @@ function ChatId({ match, location, socket}) {
   }, [pathname])
   // pathname ini biar pesan nya ga masuk semua saat pindah revuser, disini setMesaage([]) dijadiin gini
   
+  
+ 
+
   const handleSetting = () =>{
     history.push('/setting')
   }
@@ -108,7 +110,7 @@ function ChatId({ match, location, socket}) {
   const handleLogout = () =>{
     localStorage.removeItem("token");
     swal("You Have Been Logged Out!")
-    history.push('/signin')
+    history.push('/')
   }
 
   return (
@@ -179,9 +181,14 @@ function ChatId({ match, location, socket}) {
           <div className="col">
 
               <ul className={style["list-group"]}>
-                  <li className={[["list-group-item"], style["headline-chat"]].join(' ')} key="" aria-current="true"><img src={dataReceiverById.image} alt=""/>  {dataReceiverById.firstName}</li>
+                  <li className={[["list-group-item"], style["headline-chat"]].join(' ')} key="" aria-current="true">
+                    <img className={style["receiver-profile"]} src={dataReceiverById.image} alt=""/>  
+                    <p className={style["rec-name"]}>{dataReceiverById.firstName}</p>
+                    
+                  
+                  </li>
                   {/* <li className={[["list-group-item"], style["headline-chat"]].join(' ')} key="" aria-current="true">{idRec}</li> */}
-                  {/* <p>{JSON.stringify(dataReceiverById)}</p> */}
+               
               
                 {messages.map((item, index)=>
                   

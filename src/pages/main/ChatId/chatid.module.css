@@ -150,6 +150,29 @@ div.side-chat{
     color: #FFFFFF;
   }
 
+  img.receiver-profile{
+    width: 64px;
+    height: 64px;
+    border-radius: 20px;
+    
+  }
+  li.headline-chat{
+    margin-top: 15px;
+  }
+
+  p.rec-name{
+    font-family: Rubik;
+    font-style: normal;
+    font-weight: 800;
+    font-size: 18px;
+    line-height: 21px;
+    letter-spacing: -0.165px;
+    color: #232323;
+    position: relative;
+    top: -45px;
+    left: 85px;
+  }
+
 
 
 

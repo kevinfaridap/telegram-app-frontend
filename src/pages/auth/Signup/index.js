@@ -33,7 +33,7 @@ function Signup() {
             swal('Email is registered')
           } 
           swal(`Registered \n Email : ${formUser.email}, Check your email to verify `)
-          history.push("/signin");
+          history.push("/");
             
       })
       .catch((err) => {
@@ -102,7 +102,7 @@ function Signup() {
               
               
             </form>
-              <p className={style["register-teks"]}>Already have account ? <Link to="/signin">Signin</Link> Now </p>
+              <p className={style["register-teks"]}>Already have account ? <Link to="/">Signin</Link> Now </p>
               {/* <p className={style["register-teks"]}>Register </p> */}
               <Button 
                 type="submit"

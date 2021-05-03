@@ -115,7 +115,7 @@ function Settings({ match, location, socket}) {
   const handleLogout = () =>{
     localStorage.removeItem("token");
     swal("You Have Been Logged Out!")
-    history.push('/signin')
+    history.push('/')
   }
 
   return (
