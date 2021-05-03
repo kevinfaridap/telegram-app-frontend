@@ -1,70 +1,33 @@
-# Getting Started with Create React App
+# Telegram App Frontend
+ <h5> by Kevin Farid Alpharisy </h5>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# About Telegram App
+Telegram App adalah aplikasi layanan chat realtime yang memberi kemudahan pada pelanggan untuk komunikasi jarak jauh dengan cepat dan praktis. Aplikasi ini dibangun dengan menggunakan Next JS pada sisi Frontend dan Express JS pada sisi Backend serta Socket.io.
 
-## Available Scripts
+## #1 Beberapa Fitur Aplikasi Ini
 
-In the project directory, you can run:
+Masukkan Screenshot dibawah...
 
-### `npm start`
+### `Register Page Telegram App`
+![signup](https://user-images.githubusercontent.com/74039235/116845370-d603eb00-ac0f-11eb-80e9-40de4454a2ca.jpg)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### `Login Page Telegram App`
+![signin](https://user-images.githubusercontent.com/74039235/116845369-d56b5480-ac0f-11eb-8acf-558422ca8b70.jpg)
 
-### `npm test`
+### `Chat Page Telegram App`
+![chat](https://user-images.githubusercontent.com/74039235/116845363-d13f3700-ac0f-11eb-8e17-dc3cbce6e3e3.jpg)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### `Chatid Page Telegram App`
+![chatid](https://user-images.githubusercontent.com/74039235/116845366-d3a19100-ac0f-11eb-8a7b-beb449f4d7ce.jpg)
 
-### `npm run build`
+### `Update Profile Page Telegram App`
+![setting](https://user-images.githubusercontent.com/74039235/116845367-d4d2be00-ac0f-11eb-8e25-f68a0b1b6d89.jpg)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+## Link:
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- [Backend](https://github.com/kevinfaridap/zwallet-backend)
+- [Visit Project](belum deploy)
