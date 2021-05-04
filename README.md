@@ -30,4 +30,4 @@ Masukkan Screenshot dibawah...
 ## Link:
 
 - [Backend](https://github.com/kevinfaridap/zwallet-backend)
-- [Visit Project](belum deploy)
+- [Visit Project](https://mytelegram-app.netlify.app/)
