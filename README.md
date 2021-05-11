@@ -25,9 +25,7 @@ Masukkan Screenshot dibawah...
 ![setting](https://user-images.githubusercontent.com/74039235/116845367-d4d2be00-ac0f-11eb-8e25-f68a0b1b6d89.jpg)
 
 
+## VISIT PROJECT !!!
+- :white_check_mark: [Backend](https://github.com/kevinfaridap/zwallet-backend)
+- :rocket: [Ticktiz Ticket](https://mytelegram-app.netlify.app/)
 
-
-## Link:
-
-- [Backend](https://github.com/kevinfaridap/zwallet-backend)
-- [Visit Project](https://mytelegram-app.netlify.app/)
