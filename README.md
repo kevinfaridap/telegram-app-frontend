@@ -29,5 +29,5 @@ Telegram App adalah aplikasi layanan chat realtime yang memberi kemudahan pada p
 
 ## VISIT PROJECT !!!
 - :white_check_mark: [Backend](https://github.com/kevinfaridap/zwallet-backend)
-- :rocket: [Ticktiz Ticket](https://mytelegram-app.netlify.app/)
+- :rocket: [Telegram Apps](https://mytelegram-app.netlify.app/)
 
