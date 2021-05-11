@@ -8,6 +8,8 @@ import axios from 'axios'
 import {Link, useHistory, useLocation} from 'react-router-dom'
 import {menu} from '../../../assets/images'
 import swal from 'sweetalert'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function ChatId({ match, location, socket}) {
   const history = useHistory();
@@ -16,7 +18,7 @@ function ChatId({ match, location, socket}) {
   const [messages, setMessages] = useState([]);
   const [dataReceiverById, setDataReceiverById] = useState([])
   // const [setting, setSetting] = useState(true)
-  
+  toast.configure()
   
   const idRec = match.params.idreceiver;
   const idsender = `${user.id}`
@@ -38,6 +40,10 @@ function ChatId({ match, location, socket}) {
   useEffect(() => {
     if(socket){
       socket.on('receiverMessage', (dataMessage) => {
+        const notify = () => {
+          toast.info("You Have New Messages");
+        }
+        notify();
         setMessages([...messages, dataMessage])
       })
     }
@@ -165,7 +171,7 @@ function ChatId({ match, location, socket}) {
                        
                         {/* <p className={style["user-name"]} onClick={()=>setAllUser()} >{item.firstName}</p> */}
                         <br/>
-                        <p className={style["message"]}>Hey you !</p>
+                        <p className={style["message"]}>Lets talk!</p>
                       </div>
                       <div className="col">
                         <p className="time">15:30</p>
@@ -191,8 +197,9 @@ function ChatId({ match, location, socket}) {
                
               
                 {messages.map((item, index)=>
-                  
-                  <li className={`list-group-item ${user.id  === item.idUser? 'text-right': 'text-left'}`} key={index}>{item.body +' | '+item.createdAt} </li>
+                  <div className={style["msg-style"]}>
+                    <li className={`list-group-item ${user.id  === item.idUser? 'text-right': 'text-left'}`} key={index}>{item.body +' | '+item.createdAt} </li>
+                  </div>
                 )}
               </ul>
 

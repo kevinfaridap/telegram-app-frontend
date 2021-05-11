@@ -67,7 +67,11 @@ function Settings({ match, location, socket}) {
         swal(res.message)
         history.push('/chat')
       }
-      swal(res.message)
+      else if(res.message==='File too large'){
+        swal('File size too large, max size = 2 mb')
+      } else{
+        swal(res.message)
+      }
     })
     .catch((err)=>{
       console.log(err);

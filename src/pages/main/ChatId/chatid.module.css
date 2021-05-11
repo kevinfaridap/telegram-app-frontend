@@ -173,6 +173,21 @@ div.side-chat{
     left: 85px;
   }
 
+  .msg-style li{
+    background:#7E98DF;
+    border-radius: 35px 10px 35px 35px;
+    font-family: Rubik;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 15px;
+    line-height: 185.17%;
+    letter-spacing: -0.165px;
+    color: white;
+    margin-top: 15px;
+  }
+
+ 
+
 
 
 

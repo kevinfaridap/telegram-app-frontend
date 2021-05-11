@@ -8,6 +8,7 @@ import Verify from '../../pages/main/Verify'
 import ChatId from '../../pages/main/ChatId'
 import Settings from '../../pages/main/Settings'
 import PrivateRoute from './module/PrivateRoute'
+import PublicRoute from './module/PublicRoute'
 
 function MainRoute() {
   // Pindahin ke private route
@@ -30,9 +31,9 @@ function MainRoute() {
     <div>
       <BrowserRouter>
         <Switch>
-          <Route path="/signup" component={Signup} />
-          <Route exact path="/" component={Signin} />
+          <PublicRoute path="/signup" component={Signup} />
           <Route path="/auth/:email" component={Verify} />
+          <PublicRoute exact path="/" component={Signin} />
 
           <PrivateRoute path="/chat" component={Chat} />
           <PrivateRoute path="/chatid/:idreceiver" component={ChatId} />
