@@ -175,7 +175,7 @@ div.side-chat{
 
   .msg-style li{
     background:#7E98DF;
-    border-radius: 35px 10px 35px 35px;
+    border-radius: 35px 35px 35px 10px;
     font-family: Rubik;
     font-style: normal;
     font-weight: normal;
@@ -184,8 +184,41 @@ div.side-chat{
     letter-spacing: -0.165px;
     color: white;
     margin-top: 15px;
+   }
+
+  p.sender{
+    background:#7E98DF;
+    border-radius: 35px 35px 35px 10px;
+    font-family: Rubik;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 15px;
+    line-height: 185.17%;
+    letter-spacing: -0.165px;
+    color: white;
+    margin-top: 15px;
+    width: fit-content;
+    height: 63px;
+    padding: 1.3vw 30px;
   }
 
+  p.receiver{
+    background: #FAFAFA;
+    border-radius: 35px 35px 35px 10px;
+    font-family: Rubik;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 15px;
+    line-height: 185.17%;
+    letter-spacing: -0.165px;
+    color: black;
+    margin-top: 15px;
+    
+    text-align:end !important;
+    width: fit-content;
+    height: 63px;
+    padding: 1.3vw 30px;
+  }
  
 
 

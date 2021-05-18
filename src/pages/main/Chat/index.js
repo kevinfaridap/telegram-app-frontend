@@ -139,10 +139,10 @@ function Chat({ match, location, socket }) {
                     <p className="all">All</p>
                   </div>
                   <div className="col-4 col-lg">
-                    <p className="important">Important</p>
+                    {/* <p className="important">Important</p> */}
                   </div>
                   <div className="col-4 col-lg">
-                  <p className={style["unread"]}>Unread</p>
+                  {/* <p className={style["unread"]}>Unread</p> */}
                   </div>
                 </div>
                 <br/>

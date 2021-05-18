@@ -17,6 +17,9 @@ function ChatId({ match, location, socket}) {
   const [allUser, setAllUser] = useState([]);
   const [messages, setMessages] = useState([]);
   const [dataReceiverById, setDataReceiverById] = useState([])
+  const [getHistoryMsg, setGetHistoryMsg] = useState([])
+  const [getHistoryRegMsg, setGetHistoryRecMsg] = useState([])
+  
   // const [setting, setSetting] = useState(true)
   toast.configure()
   
@@ -39,6 +42,7 @@ function ChatId({ match, location, socket}) {
 
   useEffect(() => {
     if(socket){
+      socket.off('receiverMessage')
       socket.on('receiverMessage', (dataMessage) => {
         const notify = () => {
           toast.info("You Have New Messages");
@@ -77,6 +81,7 @@ function ChatId({ match, location, socket}) {
       console.log(err);
     })
   }, [])
+  
 
   const userid = user.id
 
@@ -106,6 +111,19 @@ function ChatId({ match, location, socket}) {
   }, [pathname])
   // pathname ini biar pesan nya ga masuk semua saat pindah revuser, disini setMesaage([]) dijadiin gini
   
+  useEffect(()=>{
+    setMessages([])
+    axios.get(`${process.env.REACT_APP_API}/message/${userid}/${idRec}`)
+    .then((res)=>{
+      const dataMsg = res.data.data
+      // console.log(dataMsg, 'asdasdasf');
+      setGetHistoryMsg(dataMsg)
+    })
+    .catch((err)=>{
+      console.log(err);
+    })
+
+  }, [pathname])
   
  
 
@@ -152,10 +170,10 @@ function ChatId({ match, location, socket}) {
                     <p className="all">All</p>
                   </div>
                   <div className="col">
-                    <p className="important">Important</p>
+                    {/* <p className="important">Important</p> */}
                   </div>
                   <div className="col">
-                  <p className="unread">Unread</p>
+                  {/* <p className="unread">Unread</p> */}
                   </div>
                 </div>
                 <br/>
@@ -194,13 +212,61 @@ function ChatId({ match, location, socket}) {
                   
                   </li>
                   {/* <li className={[["list-group-item"], style["headline-chat"]].join(' ')} key="" aria-current="true">{idRec}</li> */}
-               
-              
-                {messages.map((item, index)=>
+                
+                {/* {getHistoryMsg !== null ? getHistoryMsg.map((item, index)=>{
+                return (
+                <>
                   <div className={style["msg-style"]}>
-                    <li className={`list-group-item ${user.id  === item.idUser? 'text-right': 'text-left'}`} key={index}>{item.body +' | '+item.createdAt} </li>
+                    <li className={`list-group-item 
+                      ${user.id  === item.idUser? 'text-right bg-dark': 'text-left'}` } key={index}>{item.body +' | '+item.createdAt} 
+                    </li>
+                    
                   </div>
+                </>
+                )
+                }) : console.log('no data')} */}
+
+                {getHistoryMsg !== null ? getHistoryMsg.map((item, index) => 
+                  user.id === item.idUser ?(
+                    <>
+                    <div className="d-flex justify-content-end align-items-start" key={index}>
+                      <p className={style['sender']}>{item.body} &emsp; {item.createdAt} </p>
+
+                    </div>
+                    </>
+                  ) : 
+                    <>
+                    <div className="d-flex justify-content-start align-items-end" key={index}>
+                      <p className={style['receiver']}> {item.createdAt} &emsp; {item.body}</p>
+
+                    </div>
+                    </>
+                ) : console.log('no data')}
+
+
+                {messages.map((item, index) => 
+                  user.id === item.idUser ?(
+                    <>
+                    <div className="d-flex justify-content-end align-items-start" key={index}>
+                      <p className={style['sender']}>{item.body} &emsp; {item.createdAt} </p>
+
+                    </div>
+                    </>
+                  ) : 
+                    <>
+                    <div className="d-flex justify-content-start align-items-end" key={index}>
+                      <p className={style['receiver']}> {item.createdAt} &emsp; {item.body}</p>
+
+                    </div>
+                    </>
                 )}
+                
+              
+                {/* {messages.map((item, index)=>
+                  <div className={style["msg-style"]}>
+                    <li className={`list-group-item ${user.id  === item.idUser? 'text-right bg-dark': 'text-left'}`} key={index}>{item.body +' | '+item.createdAt} </li>
+                  </div>
+                )} */}
               </ul>
 
 
