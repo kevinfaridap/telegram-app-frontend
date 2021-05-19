@@ -11,6 +11,11 @@ const userReducer = (state = initialState, action) =>{
         ...state,
         users: action.payload
       }
+      case 'GET_PROFILE' :
+      return{
+        ...state,
+        users: action.payload
+      }
     default:
       return state;
   }

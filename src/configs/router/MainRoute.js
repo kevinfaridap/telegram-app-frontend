@@ -1,4 +1,4 @@
-// import React, {useEffect, useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import {BrowserRouter, Route, Switch} from 'react-router-dom'
 import Signup from '../../pages/auth/Signup'
 import Signin from '../../pages/auth/Signin'
@@ -9,6 +9,9 @@ import ChatId from '../../pages/main/ChatId'
 import Settings from '../../pages/main/Settings'
 import PrivateRoute from './module/PrivateRoute'
 import PublicRoute from './module/PublicRoute'
+import {getProfile} from '../../configs/actions/user'
+import {useDispatch} from 'react-redux'
+import {useSelector} from 'react-redux'
 
 function MainRoute() {
   // Pindahin ke private route
@@ -27,6 +30,16 @@ function MainRoute() {
     
   // // eslint-disable-next-line react-hooks/exhaustive-deps
   // },[])
+  const dispatch =  useDispatch()
+  
+  const {users} = useSelector((state)=>state.users)
+  useEffect(()=>{
+    if(localStorage.getItem('token')){
+      dispatch(getProfile())
+    }
+    
+  }, []);
+
   return (
     <div>
       <BrowserRouter>
@@ -36,7 +49,7 @@ function MainRoute() {
           <PublicRoute exact path="/" component={Signin} />
 
           <PrivateRoute path="/chat" component={Chat} />
-          <PrivateRoute path="/chatid/:idreceiver" component={ChatId} />
+          {users.id?<PrivateRoute path="/chatid/:idreceiver" component={ChatId} />: null}
           <PrivateRoute path="/setting" component={Settings} />
 
           {/* Ubah ke Private Route */}

@@ -1,32 +1,33 @@
 import React, { useEffect, useState } from 'react'
-import SideChat from '../../../components/SideChat'
-import StartMessage from '../../../parts/Chat/StartMessage'
 import style from './chatid.module.css'
 import axiosApiInstance from '../../../helpers/axios'
-import qs from 'query-string'
 import axios from 'axios'
-import {Link, useHistory, useLocation} from 'react-router-dom'
+import {Link, useHistory, useLocation, useRouteMatch} from 'react-router-dom'
 import {menu} from '../../../assets/images'
 import swal from 'sweetalert'
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import {getProfile} from '../../../configs/actions/user'
+import {useSelector} from 'react-redux'
 
 function ChatId({ match, location, socket}) {
+  let { path, url } = useRouteMatch();
   const history = useHistory();
-  const [user, setUser] = useState([]);
+  // const [user, setUser] = useState([]);
   const [allUser, setAllUser] = useState([]);
   const [messages, setMessages] = useState([]);
   const [dataReceiverById, setDataReceiverById] = useState([])
   const [getHistoryMsg, setGetHistoryMsg] = useState([])
-  const [getHistoryRegMsg, setGetHistoryRecMsg] = useState([])
-  
-  // const [setting, setSetting] = useState(true)
+
   toast.configure()
   
   const idRec = match.params.idreceiver;
-  const idsender = `${user.id}`
   const {search, pathname} = useLocation();
-  
+ 
+  // Ini dari redux
+  const userProfile = useSelector((state)=>state.users)
+
+  const idsender = userProfile.users.id
   const [sendMessage, setSendMessage] = useState([{
     idUser: idsender,
     idReceiver: idRec,
@@ -46,6 +47,8 @@ function ChatId({ match, location, socket}) {
       socket.on('receiverMessage', (dataMessage) => {
         const notify = () => {
           toast.info("You Have New Messages");
+          // console.log(dataMessage.idUser, 'cobalagi');
+          // history.push(`/chatid/${dataMessage.idUser}`)
         }
         notify();
         setMessages([...messages, dataMessage])
@@ -55,21 +58,19 @@ function ChatId({ match, location, socket}) {
 
 
   useEffect(()=>{
-    axiosApiInstance.get(`${process.env.REACT_APP_API}/users/profile`)
-    .then((res)=>{
-      const dataUser = res.data.data[0]
-      // console.log('isasdasd' , dataUser.id);
-      setUser(dataUser)
-
-      console.log(dataUser.id, 'userid = initialsocket');
-      if(socket ||  userid != null){
-        socket.emit('initialUser', dataUser.id)
-      }
-    })
-    .catch((err)=>{
-      console.log(err);
-    })
+    if(socket &&  userProfile.users.id != null){
+      socket.emit('initialUser', userProfile.users.id)
+    }
+    // axiosApiInstance.get(`${process.env.REACT_APP_API}/users/profile`)
+    // .then((res)=>{
+    //   const dataUser = res.data.data[0]
+    //   setUser(dataUser)
+    // })
+    // .catch((err)=>{
+    //   console.log(err);
+    // })
   }, [])
+
 
   useEffect(()=>{
     axiosApiInstance.get(`${process.env.REACT_APP_API}/users`)
@@ -83,8 +84,6 @@ function ChatId({ match, location, socket}) {
   }, [])
   
 
-  const userid = user.id
-
   const handleSendMessage = (e)=>{
     const kirimpesan = sendMessage.body
     const idRec = match.params.idreceiver;
@@ -92,7 +91,7 @@ function ChatId({ match, location, socket}) {
     socket.emit('sendMessage', {
       body: kirimpesan,
       idReceiver: idRec,
-      idUser: userid
+      idUser: userProfile.users.id
     }, (data)=>{
       setMessages([...messages, data]) 
     })
@@ -100,6 +99,7 @@ function ChatId({ match, location, socket}) {
 
   useEffect(()=>{
     setMessages([])
+    
     axiosApiInstance.get(`${process.env.REACT_APP_API}/users/${idRec}`)
     .then((res)=>{
       const dataReceive = res.data.data[0]
@@ -108,24 +108,23 @@ function ChatId({ match, location, socket}) {
     .catch((err)=>{
       console.log(err);
     })
-  }, [pathname])
-  // pathname ini biar pesan nya ga masuk semua saat pindah revuser, disini setMesaage([]) dijadiin gini
-  
-  useEffect(()=>{
-    setMessages([])
-    axios.get(`${process.env.REACT_APP_API}/message/${userid}/${idRec}`)
+
+    axios.get(`${process.env.REACT_APP_API}/message/${userProfile.users.id}/${idRec}`)
     .then((res)=>{
       const dataMsg = res.data.data
-      // console.log(dataMsg, 'asdasdasf');
-      setGetHistoryMsg(dataMsg)
+      // console.log(dataMsg, lihatttt);
+      if(dataMsg !== null){
+        setGetHistoryMsg(dataMsg)
+      } else{
+        setGetHistoryMsg([])
+      }
     })
     .catch((err)=>{
       console.log(err);
     })
-
   }, [pathname])
-  
- 
+  // pathname ini biar pesan nya ga masuk semua saat pindah revuser, disini setMesaage([]) dijadiin gini
+   
 
   const handleSetting = () =>{
     history.push('/setting')
@@ -181,17 +180,15 @@ function ChatId({ match, location, socket}) {
                   return (
                   <>
                     <div className="row">
-                      <div className="col">
+                      <div className="col-4">
                         <img className={style["user-img"]} src={item.image} alt=""/>
                       </div>
-                      <div className="col">
+                      <div className="col-5">
                         <p className={style["user-name"]}  onClick={() => history.push(`/chatid/${item.id}`)} >{item.firstName}</p>
-                       
-                        {/* <p className={style["user-name"]} onClick={()=>setAllUser()} >{item.firstName}</p> */}
                         <br/>
                         <p className={style["message"]}>Lets talk!</p>
                       </div>
-                      <div className="col">
+                      <div className="col-3">
                         <p className="time">15:30</p>
                       </div>
                     </div>
@@ -208,33 +205,13 @@ function ChatId({ match, location, socket}) {
                   <li className={[["list-group-item"], style["headline-chat"]].join(' ')} key="" aria-current="true">
                     <img className={style["receiver-profile"]} src={dataReceiverById.image} alt=""/>  
                     <p className={style["rec-name"]}>{dataReceiverById.firstName}</p>
-                    
-                  
                   </li>
-                  {/* <li className={[["list-group-item"], style["headline-chat"]].join(' ')} key="" aria-current="true">{idRec}</li> */}
-                
-                {/* {getHistoryMsg !== null ? getHistoryMsg.map((item, index)=>{
-                return (
-                <>
-                  <div className={style["msg-style"]}>
-                    <li className={`list-group-item 
-                      ${user.id  === item.idUser? 'text-right bg-dark': 'text-left'}` } key={index}>{item.body +' | '+item.createdAt} 
-                    </li>
-                    
-                  </div>
-                </>
-                )
-                }) : console.log('no data')} */}
-                
-                {/* Untuk fixed top */}
-                {/* <br /><br /><br /><br /> */}
 
-                {getHistoryMsg !== null ? getHistoryMsg.map((item, index) => 
-                  user.id === item.idUser ?(
+                {getHistoryMsg.map((item, index) => 
+                  userProfile.users.id === item.idUser ?(
                     <>
                     <div className="d-flex justify-content-end align-items-start" key={index}>
                       <p className={style['sender']}>{item.body} &emsp; {item.createdAt} </p>
-
                     </div>
                     </>
                   ) : 
@@ -244,11 +221,10 @@ function ChatId({ match, location, socket}) {
 
                     </div>
                     </>
-                ) : console.log('no data')}
-
+                )} 
 
                 {messages.map((item, index) => 
-                  user.id === item.idUser ?(
+                  userProfile.users.id === item.idUser ?(
                     <>
                     <div className="d-flex justify-content-end align-items-start" key={index}>
                       <p className={style['sender']}>{item.body} &emsp; {item.createdAt} </p>
@@ -259,12 +235,10 @@ function ChatId({ match, location, socket}) {
                     <>
                     <div className="d-flex justify-content-start align-items-end" key={index}>
                       <p className={style['receiver']}> {item.createdAt} &emsp; {item.body}</p>
-
                     </div>
                     </>
                 )}
-                
-              
+                {/* Ganti dengan yang diatas supaya lebih mudah styeling */}
                 {/* {messages.map((item, index)=>
                   <div className={style["msg-style"]}>
                     <li className={`list-group-item ${user.id  === item.idUser? 'text-right bg-dark': 'text-left'}`} key={index}>{item.body +' | '+item.createdAt} </li>
@@ -272,8 +246,6 @@ function ChatId({ match, location, socket}) {
                 )} */}
               </ul>
 
-
-            
             <div className={[["input-group"], style["input-text"]].join(' ')}>
               <input 
                 type="text" 
@@ -288,8 +260,6 @@ function ChatId({ match, location, socket}) {
                 <button className={[["btn"], style["btn-send"]].join(' ')} type="button" id="button-addon2" onClick={handleSendMessage}>Send</button>
               </div>
             </div>
-          
-            {/* <StartMessage /> */}
           </div>
         </div>
 

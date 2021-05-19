@@ -8,6 +8,8 @@ import axios from 'axios'
 import {Link, useHistory} from 'react-router-dom'
 import {menu} from '../../../assets/images'
 import swal from 'sweetalert'
+import {getProfile} from '../../../configs/actions/user'
+import {useDispatch} from 'react-redux'
 
 function Chat({ match, location, socket }) {
   const history = useHistory();
@@ -16,7 +18,7 @@ function Chat({ match, location, socket }) {
   const [message, setMessage] = useState('');
   const [messages, setMessages] = useState([]);
  
-
+  const dispatch =  useDispatch()
   
   const iduser = user.id
   
@@ -25,6 +27,11 @@ function Chat({ match, location, socket }) {
     idReceiver: '',
     body: ''
   })
+
+  useEffect(()=>{
+    dispatch(getProfile())
+    
+  }, []);
 
   useEffect(() => {
     if(socket){
