@@ -22,3 +22,10 @@
   background-color: #7E98DF;
   color: white;
 }
+
+@media only screen and (max-width: 600px) {
+  .btn-signup-google{
+    width: 80%;
+    height: 60px;
+  }
+}

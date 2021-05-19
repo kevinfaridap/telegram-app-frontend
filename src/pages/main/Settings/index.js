@@ -10,10 +10,14 @@ import {menu} from '../../../assets/images'
 import swal from 'sweetalert'
 import {update} from '../../../configs/actions/user'
 import {useDispatch} from 'react-redux'
+import { MdDelete } from "react-icons/md";
 
 function Settings({ match, location, socket}) {
   const history = useHistory();
   const [user, setUser] = useState([]);
+  const [removeBio, setRemoveBio] = useState({
+    idUser: user.id,
+  });
 
   const dispatch = useDispatch()
   const imageRef = useRef(null)
@@ -39,6 +43,30 @@ function Settings({ match, location, socket}) {
       image: e.target.files[0]
     })
     // console.log(e.target.files[0], 'asdasdasd')
+  }
+
+  // const handleFormRemove = (e) =>{
+  //   setRemoveBio({
+  //     ...removeBio,
+  //     [e.target.name]: e.target.value
+  //   })
+  // }
+
+  const handleRemoveBio = (e)=>{
+    // e.preventDefault();
+    axios.put(`${process.env.REACT_APP_API}/users/removebio`, {
+      idUser: user.id,
+    })
+      .then((res) => {
+          console.log(res.data)
+          if(res.data){
+            swal(`Removed Bio`)
+            history.push('/')
+          } 
+      })
+      .catch((err) => {
+          console.log(err);
+      }) 
   }
 
   const handleUpdate = (e) =>{
@@ -203,6 +231,7 @@ function Settings({ match, location, socket}) {
                   />
                   <br/>
                   <p className={style["bio"]}>Bio</p>
+                  
                 </form>
 
                 <button 
@@ -210,6 +239,16 @@ function Settings({ match, location, socket}) {
                   type="button"
                   onClick={handleUpdate}
                 > Update
+                </button>
+                <button 
+                  type="submit"
+                  onClick={handleRemoveBio}
+                  className={style['btn-remove-bio']}
+                > 
+                  <MdDelete 
+                    className={style["icon-delete"]}
+                  />
+                  
                 </button>
               </div> 
             </div>

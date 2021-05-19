@@ -8,6 +8,10 @@ import swal from 'sweetalert'
 function Signup() {
   const history = useHistory();
   const url = process.env.REACT_APP_API;
+
+  const [passwordErr, setPasswordErr] = useState({})
+  const [firstNameErr, setFirstNameErr] = useState({})
+
   const [formUser, setFormUser] = useState({
     email: '',
     password: '',
@@ -25,21 +29,45 @@ function Signup() {
   
     const handleSubmit = (e) => {
       e.preventDefault();
-      axios.post(`${process.env.REACT_APP_API}/users/signup`, formUser)
-      .then((res) => {
-          // console.log(res.data.data, 'lihatttttttt')
-          const dataRegis = res.data.data;
-          if(dataRegis === null){
-            swal('Email is registered')
-          } 
-          swal(`Registered \n Email : ${formUser.email}, Check your email to verify `)
-          history.push("/");
-            
-      })
-      .catch((err) => {
-          console.log(err);
-      })       
-  };
+      const isValid = formValidation();
+      if(isValid){
+        axios.post(`${process.env.REACT_APP_API}/users/signup`, formUser)
+        .then((res) => {
+            // console.log(res.data.data, 'lihatttttttt')
+            const dataRegis = res.data.data;
+            if(dataRegis === null){
+              swal('Email is registered')
+            } 
+            swal(`Registered \n Email : ${formUser.email}, Check your email to verify `)
+            history.push("/");
+              
+        })
+        .catch((err) => {
+            console.log(err);
+        })       
+      }
+    };
+  
+    const formValidation = () =>{
+      const passwordErr = {};
+      const firstNameErr = {};
+      let isValid = true;
+
+      if(formUser.password.trim().length < 8){
+        passwordErr.passwordShort = "Password is too short. Min 8 character";
+        isValid = false;
+      }
+
+      if(formUser.firstName.trim().length < 5){
+        firstNameErr.firstNameShort = "Your Name is too short. Min 5 character";
+        isValid = false;
+      }
+
+      setPasswordErr(passwordErr);
+      setFirstNameErr(firstNameErr);
+      return isValid;
+    }
+
   return (
     <div>
       <div className={style["main"]}>
@@ -61,6 +89,9 @@ function Signup() {
                   value={formUser.firstName}
                   onChange={(e)=>handleFormChange(e)}
                 />
+                {Object.keys(firstNameErr).map((key)=>{
+                  return <div className={style['error-validation']} style={{color: "red"}}>{firstNameErr[key]}</div>
+                })}
               </div>
               <div className="form-group mt-3">
                 <p className={style["name"]}>Email</p>
@@ -84,6 +115,9 @@ function Signup() {
                   value={formUser.password}
                   onChange={(e)=>handleFormChange(e)}
                 />
+                {Object.keys(passwordErr).map((key)=>{
+                  return <div className={style['error-validation']} style={{color: "red"}}>{passwordErr[key]}</div>
+                })}
               </div>
               
               <div>

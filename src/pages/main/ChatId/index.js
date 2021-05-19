@@ -202,7 +202,7 @@ function ChatId({ match, location, socket}) {
               </div> 
             </div>
           </div>
-          <div className="col">
+          <div className="col-lg-9">
 
               <ul className={style["list-group"]}>
                   <li className={[["list-group-item"], style["headline-chat"]].join(' ')} key="" aria-current="true">
@@ -225,6 +225,9 @@ function ChatId({ match, location, socket}) {
                 </>
                 )
                 }) : console.log('no data')} */}
+                
+                {/* Untuk fixed top */}
+                {/* <br /><br /><br /><br /> */}
 
                 {getHistoryMsg !== null ? getHistoryMsg.map((item, index) => 
                   user.id === item.idUser ?(

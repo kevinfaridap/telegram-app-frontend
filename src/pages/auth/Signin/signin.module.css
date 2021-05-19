@@ -115,3 +115,29 @@ div.main{
     text-align: center;
     margin-top: 30px;
   }
+
+
+  @media only screen and (max-width: 600px) {
+    div.main{
+      background-color: #E5E5E5;
+      padding-top: 0px;
+      padding-bottom: 0px;
+    }
+
+    div.form-container{
+      width: 100%;
+      height: 100%;
+    }
+
+    form.form-login input.form-control{
+      width: 80%;
+      height: 50px;
+      font-weight: 500;
+    }
+
+    button.btn-auth{
+      width: 80%;
+      height: 60px;
+      margin-top: 30px;
+    }
+  }

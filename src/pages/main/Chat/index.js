@@ -150,16 +150,15 @@ function Chat({ match, location, socket }) {
                   return (
                   <>
                     <div className="row">
-                      <div className="col">
-                      {/* https://img.icons8.com/bubbles/2x/user-male.png */}
+                      <div className="col-4">
                         <img className={style["user-img"]} src={item.image} alt=""/>
                       </div>
-                      <div className="col">
+                      <div className="col-5">
                         <p className={style["user-name"]} onClick={() => history.push(`/chatid/${item.id}`)} >{item.firstName}</p>
                         <br/>
-                        <p className={style["message"]}>Hey you !</p>
+                        <p className={style["message"]}>Lets talk !</p>
                       </div>
-                      <div className="col">
+                      <div className="col-3">
                         <p className={style["time"]}>15:30</p>
                       </div>
                     </div>
@@ -171,22 +170,6 @@ function Chat({ match, location, socket }) {
             </div>
           </div>
           <div className="col-lg">
-            {/* <div className="wrapper-chat">
-            <ul className="list-group">
-              
-              <li className="list-group-item active" key="" aria-current="true">Message</li>
-              {messages.map((item, index)=>
-                <li className={`list-group-item`} key={index}>{item.message +' | '+item.time}</li>
-              )}
-            </ul>
-            </div>
-            <div className="input-group mb-3">
-              <input type="text" className="form-control" placeholder="text here" onChange={(e)=>setMessage(e.target.value)} />
-              <div className="input-group-append">
-                <button className="btn btn-outline-secondary" type="button" id="button-addon2" onClick={handleSendMessage}>Kirim</button>
-              </div>
-            </div> */}
-          
             <StartMessage teks="Please select a chat to start messaging" />
           </div>
         </div>

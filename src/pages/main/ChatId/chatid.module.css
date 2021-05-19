@@ -156,8 +156,17 @@ div.side-chat{
     border-radius: 20px;
     
   }
+  
+  /* .headline-chat{
+    background-color: red;
+    width: 100%;
+    margin-top: -30px;
+  } */
+
   li.headline-chat{
     margin-top: 15px;
+    /* position: fixed;
+    top: 0; */
   }
 
   p.rec-name{
@@ -225,3 +234,9 @@ div.side-chat{
 
 
   /* Akhir Sidechat */
+
+
+  @media only screen and (max-width: 600px) {
+    
+
+  }

@@ -238,6 +238,23 @@ div.side-chat{
     border: none;
   }
 
+  .icon-delete{
+    width: 20px;
+    height: 80px;
+    
+  }
+
+  button.btn-remove-bio{
+    margin-top: -90px;
+    position: relative;
+    top: -90px;
+    right: -19vw;
+    border: none;
+    height: 30px;
+    background: transparent;
+  }
+
+
 
   /* Akhir Sidechat */
 
@@ -290,5 +307,15 @@ div.side-chat{
     button.btn-change-profule{
       margin-bottom: 40px;
       margin-top: 30px;
+    }
+
+    button.btn-remove-bio{
+      margin-top: -90px;
+      position: relative;
+      top: -90px;
+      right: -69vw;
+      border: none;
+      height: 30px;
+      background: transparent;
     }
   }
