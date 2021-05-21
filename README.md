@@ -70,11 +70,11 @@ REACT_APP_SOCKET=[Backend API]
 
 <p align='center'>
   <span>
-      <image width="200" src='./screenshot/register.png' />
-      <image width="200" src='./screenshot/login.png' />
-      <image width="200" src='./screenshot/chat.png' />
-      <image width="200" src='./screenshot/chat-id.png' />
-      <image width="200" src='./screenshot/setting.png' />
+      <image width="400" src='./screenshot/register.png' />
+      <image width="400" src='./screenshot/login.png' />
+      <image width="400" src='./screenshot/chat.png' />
+      <image width="400" src='./screenshot/chat-id.png' />
+      <image width="400" src='./screenshot/setting.png' />
      
 
    
