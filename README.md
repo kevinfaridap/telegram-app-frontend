@@ -27,7 +27,7 @@
 ## Tentang Project
 
 
-Telegram App adalah aplikasi layanan chat realtime yang memberi kemudahan pada pelanggan untuk komunikasi jarak jauh dengan cepat dan praktis. Terdapat fitur register, login, verifikasi email, realtime chat, dan update profile. Aplikasi ini dibangun dengan menggunakan React JS pada sisi Frontend dan Express JS pada sisi Backend serta Socket.io.
+Telegram App adalah aplikasi layanan chat realtime yang memberi kemudahan pada pelanggan untuk komunikasi jarak jauh dengan cepat dan praktis. Terdapat fitur register, login, verifikasi email, realtime chat, dan update profile. Aplikasi ini dibangun dengan menggunakan ReactJs pada sisi Frontend dan ExpressJs pada sisi Backend serta Socket.io.
 
 
 
