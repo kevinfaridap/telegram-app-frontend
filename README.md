@@ -2,7 +2,7 @@
 
   <h3 align="center">Telegram App</h3>
   <p align="center">
-   <image align="center" width="200" src='./screenshot/logo.png' /> 
+   <image align="center" width="200" src='https://user-images.githubusercontent.com/74039235/119268981-91241080-bc1f-11eb-8c7d-f5f0b8135566.png' /> 
   </p>
   <p align="center">
    by Kevin Farid Alpharisy
@@ -70,11 +70,11 @@ REACT_APP_SOCKET=[Backend API]
 
 <p align='center'>
   <span>
-      <image width="400" src='https://raw.githubusercontent.com/kevinfaridap/telegram-app-frontend/master/screenshot/register.png' />
-      <image width="400" src='https://raw.githubusercontent.com/kevinfaridap/telegram-app-frontend/master/screenshot/login.png' />
-      <image width="400" src='https://raw.githubusercontent.com/kevinfaridap/telegram-app-frontend/master/screenshot/chat.png' />
-      <image width="400" src='https://raw.githubusercontent.com/kevinfaridap/telegram-app-frontend/master/screenshot/chat-id.png' />
-      <image width="400" src='https://raw.githubusercontent.com/kevinfaridap/telegram-app-frontend/master/screenshot/setting.png' />
+      <image width="400" src='https://user-images.githubusercontent.com/74039235/119268661-1c9ca200-bc1e-11eb-8fd0-a437c004f636.jpg' />
+      <image width="400" src='https://user-images.githubusercontent.com/74039235/119268658-1ad2de80-bc1e-11eb-81e0-2cbdfc749336.jpg' />
+      <image width="400" src='https://user-images.githubusercontent.com/74039235/119268709-65ecf180-bc1e-11eb-8463-595867dd00d1.png' />
+      <image width="400" src='https://user-images.githubusercontent.com/74039235/119268717-6c7b6900-bc1e-11eb-84d3-4b0039778351.png' />
+      <image width="400" src='https://user-images.githubusercontent.com/74039235/119268726-71401d00-bc1e-11eb-8c3f-bbd73d8c87b7.png' />
      
 
    
