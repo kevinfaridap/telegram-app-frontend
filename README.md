@@ -2,7 +2,7 @@
 
   <h3 align="center">Telegram App</h3>
   <p align="center">
-   <image align="center" width="200" src='https://user-images.githubusercontent.com/74039235/119268981-91241080-bc1f-11eb-8c7d-f5f0b8135566.png' /> 
+   <image align="center"  src='https://user-images.githubusercontent.com/74039235/119268981-91241080-bc1f-11eb-8c7d-f5f0b8135566.png' /> 
   </p>
   <p align="center">
    by Kevin Farid Alpharisy
