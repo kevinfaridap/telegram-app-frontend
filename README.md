@@ -92,7 +92,7 @@ Berkontibusi membuat komunitas open source menjadi tempat yang luar biasa untuk 
 
 ## Related Project
 - :white_check_mark: [Backend](https://github.com/kevinfaridap/telegram-app-backend)
-- :rocket: [Telegram Apps](https://mytelegram-app.netlify.app/)
+- :rocket: [Telegram Apps [Demo Aplikasi]](https://mytelegram-app.netlify.app/)
   
    
 
