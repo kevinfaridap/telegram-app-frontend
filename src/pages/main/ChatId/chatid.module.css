@@ -39,6 +39,7 @@ div.side-chat{
   }
   
   p.user-name{
+    cursor: pointer !important;
     font-family: Rubik;
     font-style: normal;
     font-weight: 500;
@@ -51,6 +52,7 @@ div.side-chat{
     left: -30px;
     float: left;
   }
+
   
   p.message{
     font-family: Rubik;
@@ -123,6 +125,7 @@ div.side-chat{
   }
 
   div.btn-menu{
+    cursor: pointer;
     position: relative;
     top: -40px;
     right: -220px;

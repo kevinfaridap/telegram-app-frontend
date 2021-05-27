@@ -23,6 +23,7 @@ div.side-chat{
   }
 
   div.btn-menu{
+    cursor: pointer;
     position: relative;
     top: -40px;
     right: -220px;
@@ -113,7 +114,8 @@ div.side-chat{
     text-align: center;
     margin-right: auto;
     margin-left: auto;
-    margin-top: -45px;
+    position: relative;
+    top: -30px;
   }
 
   p.acc{
@@ -144,6 +146,8 @@ div.side-chat{
     border-bottom: 2px solid #F6F6F6;
     position: relative;
     top: -30px;
+    left: 10px;
+    /* margin-top: -50px; */
     text-align: start;
   }
 
@@ -158,7 +162,16 @@ div.side-chat{
     color: #232323;
     margin-left: auto;
     margin-right: auto;
-    margin-top: -35px;
+    position: relative;
+    top: -5px;
+    left: 13px;
+    margin-bottom: 20px;
+  }
+
+  input.form-profile-username:focus{
+    outline: none !important;
+    /* background-color: red; */
+    border: none !important;
   }
 
   p.username-edit{
@@ -180,11 +193,17 @@ div.side-chat{
     border: none;
     position: relative;
     top: -30px;
+    left: 13px;
   }
   
   textarea.form-profile-bio:focus{
-    outline: none;
+    outline: none !important;
+    border: transparent;
+    
   }
+  textarea:focus, input:focus{
+    outline: none;
+}
   
 
   p.bio{
@@ -213,6 +232,7 @@ div.side-chat{
     font-family: Rubik;
     font-size: 15px;
     font-weight: 400;
+    cursor: pointer;
   }
 
   button.btn-change-profule:hover{
@@ -221,6 +241,7 @@ div.side-chat{
   }
 
   input.form-img{
+    cursor: pointer !important;
     position: relative;
     border: none;
     color: transparent;
@@ -252,6 +273,7 @@ div.side-chat{
     border: none;
     height: 30px;
     background: transparent;
+    cursor: pointer;
   }
 
 
@@ -307,6 +329,7 @@ div.side-chat{
     button.btn-change-profule{
       margin-bottom: 40px;
       margin-top: 30px;
+      cursor: pointer;
     }
 
     button.btn-remove-bio{

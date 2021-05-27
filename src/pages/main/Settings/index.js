@@ -157,7 +157,7 @@ function Settings({ match, location, socket}) {
             <div className={style["side-chat"]}>
               <div className="container">
                 <Link to="/chat">
-                  <h5 className={style["title"]}>Telegram</h5>
+                  <h5 className={style["title"]}>Telegram App</h5>
                 </Link>
                 
                 <div className={[style["btn-menu"], ["dropright"]].join(' ')}>
@@ -186,7 +186,7 @@ function Settings({ match, location, socket}) {
                   <br/>
                   {/* <p className={style["fullName"]}>{user.firstName} {user.lastName}</p> */}
                   <input 
-                    className={[["form-control"], style["form-profile-fullname"]].join(' ')} 
+                    className={[ style["form-profile-fullname"], ["outline-noone"]].join(' ')} 
                     type="text" 
                     name="firstName"
                     id="firstName"
@@ -199,7 +199,7 @@ function Settings({ match, location, socket}) {
                   <br/>
                   {/* <p className={style["phonenumber"]}>{user.phoneNumber}</p> */}
                   <input 
-                    className={[["form-control"], style["form-profile-phone"]].join(' ')} 
+                    className={[style["form-profile-phone"]].join(' ')} 
                     type="text" 
                     name="phoneNumber"
                     id="phoneNumber"
@@ -209,7 +209,7 @@ function Settings({ match, location, socket}) {
                   />
                   <br/>
                   <input 
-                    className={[["form-control"], style["form-profile-username"]].join(' ')} 
+                    className={[ style["form-profile-username"]].join(' ')} 
                     type="text" 
                     name="username"
                     id="username"
@@ -221,7 +221,7 @@ function Settings({ match, location, socket}) {
                   <p className={style["username-edit"]}>Username</p>
                   <br/>
                   <textarea 
-                    className={[["form-control"], style["form-profile-bio"]].join(' ')} 
+                    className={[ style["form-profile-bio"]].join(' ')} 
                     type="text" 
                     name="bio"
                     id="bio"

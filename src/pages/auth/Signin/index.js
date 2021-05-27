@@ -79,7 +79,7 @@ const handleFormChange = (e) => {
                 </div>
                 
                 <div>
-                  <Link to="/forgot-password">
+                  <Link to="/">
                     <p className={style["forgot"]}>Forgot Password?</p>
                   </Link>
                 </div>

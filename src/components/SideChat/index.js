@@ -6,7 +6,7 @@ function SideChat({receivername}) {
     <div>
       <div className={style["side-chat"]}>
         <div className="container">
-          <h5 className={style["title"]}>Telegram</h5>
+          <h5 className={style["title"]}>Telegram App</h5>
           <input 
             className={[["form-control"], style["form-search"]].join(' ')} 
             type="search" 

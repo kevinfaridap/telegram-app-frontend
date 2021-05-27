@@ -143,7 +143,7 @@ function ChatId({ match, location, socket}) {
             <div className={style["side-chat"]}>
               <div className="container">
                 <Link to="/chat">
-                  <h5 className={style["title"]}>Telegram</h5>
+                  <h5 className={style["title"]}>Telegram App</h5>
                 </Link>
                 
                 <div className={[style["btn-menu"], ["dropright"]].join(' ')}>
@@ -186,10 +186,10 @@ function ChatId({ match, location, socket}) {
                       <div className="col-5">
                         <p className={style["user-name"]}  onClick={() => history.push(`/chatid/${item.id}`)} >{item.firstName}</p>
                         <br/>
-                        <p className={style["message"]}>Lets talk!</p>
+                        <p className={style["message"]}>{item.username} </p>
                       </div>
                       <div className="col-3">
-                        <p className="time">15:30</p>
+                        <p className="time"></p>
                       </div>
                     </div>
                   </>

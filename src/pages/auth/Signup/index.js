@@ -121,7 +121,7 @@ function Signup() {
               </div>
               
               <div>
-                <Link to="/forgot-password">
+                <Link to="/signup">
                   <p className={style["forgot"]}>Forgot Password?</p>
                 </Link>
               </div>

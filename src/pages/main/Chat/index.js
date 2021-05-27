@@ -120,7 +120,7 @@ function Chat({ match, location, socket }) {
           <div className="col-lg-3 ">
             <div className={style["side-chat"]}>
               <div className="container">
-                <h5 className={style["title"]}>Telegram</h5>
+                <h5 className={style["title"]}>Telegram App</h5>
 
                 <div className={[style["btn-menu"], ["dropright"]].join(' ')}>
                   {/* <button type="button" className="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> */}
@@ -163,10 +163,10 @@ function Chat({ match, location, socket }) {
                       <div className="col-5">
                         <p className={style["user-name"]} onClick={() => history.push(`/chatid/${item.id}`)} >{item.firstName}</p>
                         <br/>
-                        <p className={style["message"]}>Lets talk !</p>
+                        <p className={style["message"]}>{item.username}</p>
                       </div>
                       <div className="col-3">
-                        <p className={style["time"]}>15:30</p>
+                        <p className={style["time"]}></p>
                       </div>
                     </div>
                   </>
