@@ -11,6 +11,7 @@ function Signup() {
 
   const [passwordErr, setPasswordErr] = useState({})
   const [firstNameErr, setFirstNameErr] = useState({})
+  const [emailErr, setEmailErr] = useState({})
 
   const [formUser, setFormUser] = useState({
     email: '',
@@ -30,27 +31,35 @@ function Signup() {
     const handleSubmit = (e) => {
       e.preventDefault();
       const isValid = formValidation();
-      if(isValid){
-        axios.post(`${process.env.REACT_APP_API}/users/signup`, formUser)
-        .then((res) => {
-            // console.log(res.data.data, 'lihatttttttt')
-            const dataRegis = res.data.data;
-            if(dataRegis === null){
-              swal('Email is registered')
+      if(formUser.email === ''){
+        swal('Email cannot be empty!')
+      } else if(formUser.password === ''){
+        swal('Password cannot be empty!')
+      } else if(formUser.firstName === ''){
+        swal('First name cannot be empty !')
+      } else{
+        if(isValid){
+          axios.post(`${process.env.REACT_APP_API}/users/signup`, formUser)
+          .then((res) => {
+            // const dataRegis = res.data.data;
+            console.log(res, 'lihatttttttt')
+            if(res.data.data==null){
+              swal(res.data.error.message)
             } 
             swal(`Registered \n Email : ${formUser.email}, Check your email to verify `)
             history.push("/");
-              
-        })
-        .catch((err) => {
-            console.log(err);
-        })       
+          })
+          .catch((err) => {
+              console.log(err);
+          })       
+        }
       }
     };
   
     const formValidation = () =>{
       const passwordErr = {};
       const firstNameErr = {};
+      const emailErr = {};
       let isValid = true;
 
       if(formUser.password.trim().length < 8){
@@ -63,9 +72,18 @@ function Signup() {
         isValid = false;
       }
 
+      if(formUser.email.trim().length < 1){
+        emailErr.emailEmpty = "Email cannot be empty!"
+      }
+
       setPasswordErr(passwordErr);
       setFirstNameErr(firstNameErr);
+      setEmailErr(emailErr)
       return isValid;
+    }
+
+    const handleGoogleBtn = ()=>{
+      history.push("/")
     }
 
   return (
@@ -103,6 +121,9 @@ function Signup() {
                   value={formUser.email}
                   onChange={(e)=>handleFormChange(e)}
                 />
+                {Object.keys(emailErr).map((key)=>{
+                  return <div className={style['error-validation']} style={{color: "red"}}>{emailErr[key]}</div>
+                })}
               </div>
               <div className="form-group mt-3">
                 <p className={style["name"]}>Password</p>
@@ -141,7 +162,7 @@ function Signup() {
               <Button 
                 type="submit"
                 btn="btn-signup-google"
-                // onClick={handleSubmit}
+                onClick={handleGoogleBtn}
                 btnValue="Google"
               />
 

@@ -84,18 +84,27 @@ div.side-chat{
     line-height: 19px;
     letter-spacing: -0.165px;
     color: #848484;
+    width: 67vw;
+    border: none;
+    padding: 10px 0 10px 20px;
   }
 
   div.input-text{
+    padding-top: 10px;
+    padding-bottom: 10px;
     position:fixed;
     /* left:10px; */
     bottom:10px;
-    width: 72%;
+    width: fit-content;
 
   }
 
   button.btn-send{
     background-color: transparent;
+    font-family: Rubik;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
   }
 
   ul.list-group{
@@ -110,6 +119,22 @@ div.side-chat{
     background: transparent;
   }
   ul.list-group::-webkit-scrollbar-thumb:hover {
+    background: transparent;
+  }
+
+  ul.list-user{
+    padding-top: 10px;
+    overflow-y: auto; 
+    max-height: 30vw;
+  }
+  ul.list-user::-webkit-scrollbar{
+    border: 0.5px transparent solid;
+    border-radius: 8px;
+  }
+  ul.list-user::-webkit-scrollbar-thumb {
+    background: transparent;
+  }
+  ul.list-user::-webkit-scrollbar-thumb:hover {
     background: transparent;
   }
 
@@ -240,6 +265,34 @@ div.side-chat{
 
 
   @media only screen and (max-width: 600px) {
-    
+    div.chat{
+      margin: 0px;
+      padding: 0px;
+  }
+
+    input.input-chat{
+      background: #FAFAFA;
+      border-radius: 15px;
+      font-family: Rubik;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 16px;
+      line-height: 19px;
+      letter-spacing: -0.165px;
+      color: #848484;
+      width: 80vw;
+      margin-left: 5vw;
+    }
+
+    ul.list-user{
+      padding-top: 10px;
+      overflow-y: auto; 
+      max-height: 20vw;
+    }
+
+    ul.list-group{
+      border-top: 1px solid #848484 !important;
+      width: 100%;
+    }
 
   }

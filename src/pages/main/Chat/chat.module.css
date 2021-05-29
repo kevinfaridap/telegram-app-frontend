@@ -96,6 +96,22 @@ div.side-chat{
     color: #FFFFFF;
   }
 
+  ul.list-user{
+    padding-top: 10px;
+    overflow-y: auto; 
+    max-height: 30vw;
+  }
+  ul.list-user::-webkit-scrollbar{
+    border: 0.5px transparent solid;
+    border-radius: 8px;
+  }
+  ul.list-user::-webkit-scrollbar-thumb {
+    background: transparent;
+  }
+  ul.list-user::-webkit-scrollbar-thumb:hover {
+    background: transparent;
+  }
+
   /* Akhir Sidechat */
 
 
@@ -196,5 +212,11 @@ div.side-chat{
 
     p.unread{
       margin-left: 30px;
+    }
+
+    ul.list-user{
+      padding-top: 10px;
+      overflow-y: auto; 
+      max-height: 100vw;
     }
   }

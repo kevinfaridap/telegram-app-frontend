@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import style from './chatid.module.css'
 import axiosApiInstance from '../../../helpers/axios'
 import axios from 'axios'
-import {Link, useHistory, useLocation, useRouteMatch} from 'react-router-dom'
+import {Link, useHistory, useLocation, useRouteMatch, useParams} from 'react-router-dom'
 import {menu} from '../../../assets/images'
 import swal from 'sweetalert'
 import { toast } from 'react-toastify';
@@ -12,6 +12,7 @@ import {useSelector} from 'react-redux'
 
 function ChatId({ match, location, socket}) {
   let { path, url } = useRouteMatch();
+  const {idreceiver:idRec} = useParams()
   const history = useHistory();
   // const [user, setUser] = useState([]);
   const [allUser, setAllUser] = useState([]);
@@ -21,11 +22,15 @@ function ChatId({ match, location, socket}) {
 
   toast.configure()
   
-  const idRec = match.params.idreceiver;
+  // const idRec = match.params.idreceiver;
   const {search, pathname} = useLocation();
  
   // Ini dari redux
   const userProfile = useSelector((state)=>state.users)
+
+  const [searchName, setSearchName] = useState({
+    firstName: ''
+  })
 
   const idsender = userProfile.users.id
   const [sendMessage, setSendMessage] = useState([{
@@ -46,12 +51,16 @@ function ChatId({ match, location, socket}) {
       socket.off('receiverMessage')
       socket.on('receiverMessage', (dataMessage) => {
         const notify = () => {
+          console.log(messages);
+          if(idRec == dataMessage.idUser){
+            setMessages([...messages, dataMessage])
+          }
           toast.info("You Have New Messages");
           // console.log(dataMessage.idUser, 'cobalagi');
-          // history.push(`/chatid/${dataMessage.idUser}`)
+ 
         }
         notify();
-        setMessages([...messages, dataMessage])
+        
       })
     }
   }, [socket, messages])
@@ -73,7 +82,7 @@ function ChatId({ match, location, socket}) {
 
 
   useEffect(()=>{
-    axiosApiInstance.get(`${process.env.REACT_APP_API}/users`)
+    axiosApiInstance.get(`${process.env.REACT_APP_API}/users/getalluser/${userProfile.users.id}?firstname=${searchName.firstName}`)
     .then((res)=>{
       const dataFriend = res.data.data
       setAllUser(dataFriend)
@@ -81,7 +90,7 @@ function ChatId({ match, location, socket}) {
     .catch((err)=>{
       console.log(err);
     })
-  }, [])
+  }, [searchName.firstName])
   
 
   const handleSendMessage = (e)=>{
@@ -108,12 +117,13 @@ function ChatId({ match, location, socket}) {
     .catch((err)=>{
       console.log(err);
     })
-
+    // alert(`${userProfile.users.id} ${idRec}`)
     axios.get(`${process.env.REACT_APP_API}/message/${userProfile.users.id}/${idRec}`)
     .then((res)=>{
       const dataMsg = res.data.data
-      // console.log(dataMsg, lihatttt);
+      console.log(dataMsg, 'lihatttt');
       if(dataMsg !== null){
+        
         setGetHistoryMsg(dataMsg)
       } else{
         setGetHistoryMsg([])
@@ -124,7 +134,20 @@ function ChatId({ match, location, socket}) {
     })
   }, [pathname])
   // pathname ini biar pesan nya ga masuk semua saat pindah revuser, disini setMesaage([]) dijadiin gini
-   
+  
+  const handleKeyDown = (event) => {
+    if (event.key === 'Enter') {
+      // console.log('do validate')
+      handleSendMessage(event)
+    }
+  }
+
+  const handleFormSearch = (e) =>{
+    setSearchName({
+      ...searchName,
+      [e.target.name]: e.target.value
+    })
+  }
 
   const handleSetting = () =>{
     history.push('/setting')
@@ -159,43 +182,51 @@ function ChatId({ match, location, socket}) {
                 <input 
                   className={[["form-control"], style["form-search"]].join(' ')} 
                   type="search" 
-                  placeholder="Type your message..." 
+                  placeholder="Search your friend's name here..." 
                   aria-label="Search"
+                  name="firstName"
+                  id="firstName"
+                  value={searchName.firstName}
+                  onChange={(e)=>handleFormSearch(e)}
                 >
                 </input>
                 <br/>
-                <div className="row">
-                  <div className="col">
+                <div className="row ml-4">
+                  <div className="col-4 col-lg">
                     <p className="all">All</p>
                   </div>
-                  <div className="col">
+                  <div className="col-4 col-lg">
                     {/* <p className="important">Important</p> */}
                   </div>
-                  <div className="col">
+                  <div className="col-4 col-lg">
                   {/* <p className="unread">Unread</p> */}
                   </div>
                 </div>
-                <br/>
-                {allUser !== undefined ? allUser.map((item)=>{
-                  return (
-                  <>
-                    <div className="row">
-                      <div className="col-4">
-                        <img className={style["user-img"]} src={item.image} alt=""/>
+                {/* <br/> */}
+                {/* list-user untuk scroll */}
+                <ul className={style["list-user"]}>
+                  {/* <br /> */}
+                  {allUser !== undefined ? allUser.map((item)=>{
+                    return (
+                    <>
+                      <div className="row">
+                        <div className="col-4">
+                          <img className={style["user-img"]} src={item.image} alt=""/>
+                        </div>
+                        <div className="col-5">
+                          <p className={style["user-name"]}  onClick={() => history.push(`/chatid/${item.id}`)} >{item.firstName}</p>
+                          <br/>
+                          <p className={style["message"]}>{item.username} </p>
+                        </div>
+                        <div className="col-3">
+                          <p className="time"></p>
+                        </div>
                       </div>
-                      <div className="col-5">
-                        <p className={style["user-name"]}  onClick={() => history.push(`/chatid/${item.id}`)} >{item.firstName}</p>
-                        <br/>
-                        <p className={style["message"]}>{item.username} </p>
-                      </div>
-                      <div className="col-3">
-                        <p className="time"></p>
-                      </div>
-                    </div>
-                  </>
-                  )
+                    </>
+                    )
                   }) : console.log("try again")} 
                 
+                </ul>
               </div> 
             </div>
           </div>
@@ -249,12 +280,13 @@ function ChatId({ match, location, socket}) {
             <div className={[["input-group"], style["input-text"]].join(' ')}>
               <input 
                 type="text" 
-                className={[["form-control"], style["input-chat"]].join(' ')} 
+                className={[style["input-chat"]].join(' ')} 
                 placeholder="Type your message here..." 
                 name="body"
                 id="body"
                 value={sendMessage.body}
                 onChange={(e)=>handleInputText(e)} 
+                onKeyDown={handleKeyDown}
               />
               <div className="input-group-append">
                 <button className={[["btn"], style["btn-send"]].join(' ')} type="button" id="button-addon2" onClick={handleSendMessage}>Send</button>

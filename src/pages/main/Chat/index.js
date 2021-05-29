@@ -5,11 +5,13 @@ import style from './chat.module.css'
 import axiosApiInstance from '../../../helpers/axios'
 import qs from 'query-string'
 import axios from 'axios'
-import {Link, useHistory} from 'react-router-dom'
+import {Link, useHistory, useParams} from 'react-router-dom'
 import {menu} from '../../../assets/images'
 import swal from 'sweetalert'
 import {getProfile} from '../../../configs/actions/user'
 import {useDispatch} from 'react-redux'
+import { toast } from 'react-toastify';
+import {useSelector} from 'react-redux'
 
 function Chat({ match, location, socket }) {
   const history = useHistory();
@@ -19,13 +21,17 @@ function Chat({ match, location, socket }) {
   const [messages, setMessages] = useState([]);
  
   const dispatch =  useDispatch()
-  
+  const userProfile = useSelector((state)=>state.users)
   const iduser = user.id
   
   const [sendMessage, setSendMessage] = useState({
     idUser: '',
     idReceiver: '',
     body: ''
+  })
+
+  const [searchName, setSearchName] = useState({
+    firstName: ''
   })
 
   useEffect(()=>{
@@ -55,7 +61,7 @@ function Chat({ match, location, socket }) {
   }, [])
 
   useEffect(()=>{
-    axiosApiInstance.get(`${process.env.REACT_APP_API}/users`)
+    axiosApiInstance.get(`${process.env.REACT_APP_API}/users/getalluser/${userProfile.users.id}?firstname=${searchName.firstName}`)
     .then((res)=>{
       const dataFriend = res.data.data
   
@@ -64,7 +70,7 @@ function Chat({ match, location, socket }) {
     .catch((err)=>{
       console.log(err);
     })
-  }, [])
+  }, [searchName.firstName])
 
 
   useEffect(()=>{
@@ -79,6 +85,26 @@ function Chat({ match, location, socket }) {
     })
   }, [])
 
+  const {idreceiver:idRec} = useParams()
+  useEffect(() => {
+    if(socket){
+      socket.off('receiverMessage')
+      socket.on('receiverMessage', (dataMessage) => {
+        const notify = () => {
+          console.log(messages);
+          if(idRec == dataMessage.idUser){
+            setMessages([...messages, dataMessage])
+          }
+          toast.info("You Have New Messages");
+          // console.log(dataMessage.idUser, 'cobalagi');
+ 
+        }
+        notify();
+        
+      })
+    }
+  }, [socket, messages])
+
   // console.log(user.id);
   const userid = user.id
   useEffect(()=>{
@@ -90,6 +116,14 @@ function Chat({ match, location, socket }) {
       socket.emit('initialUser', userid)
     }
   }, [socket])
+
+
+  const handleFormSearch = (e) =>{
+    setSearchName({
+      ...searchName,
+      [e.target.name]: e.target.value
+    })
+  }
 
   const handleSendMessage = ()=>{
     const room = match.params.room
@@ -136,8 +170,12 @@ function Chat({ match, location, socket }) {
                 <input 
                   className={[["form-control"], style["form-search"]].join(' ')} 
                   type="search" 
-                  placeholder="Type your message..." 
+                  placeholder="Search your friend's name here..." 
                   aria-label="Search"
+                  name="firstName"
+                  id="firstName"
+                  value={searchName.firstName}
+                  onChange={(e)=>handleFormSearch(e)}
                 >
                 </input>
                 <br/>
@@ -152,26 +190,29 @@ function Chat({ match, location, socket }) {
                   {/* <p className={style["unread"]}>Unread</p> */}
                   </div>
                 </div>
-                <br/>
-                {allUser !== undefined ? allUser.map((item)=>{
-                  return (
-                  <>
-                    <div className="row">
-                      <div className="col-4">
-                        <img className={style["user-img"]} src={item.image} alt=""/>
+                {/* <br/> */}
+                {/* list-user untuk scroll */}
+                <ul className={style["list-user"]}>
+                  {allUser !== undefined ? allUser.map((item)=>{
+                    return (
+                      <>
+                      <div className="row">
+                        <div className="col-4">
+                          <img className={style["user-img"]} src={item.image} alt=""/>
+                        </div>
+                        <div className="col-5">
+                          <p className={style["user-name"]} onClick={() => history.push(`/chatid/${item.id}`)} >{item.firstName}</p>
+                          <br/>
+                          <p className={style["message"]}>{item.username}</p>
+                        </div>
+                        <div className="col-3">
+                          <p className={style["time"]}></p>
+                        </div>
                       </div>
-                      <div className="col-5">
-                        <p className={style["user-name"]} onClick={() => history.push(`/chatid/${item.id}`)} >{item.firstName}</p>
-                        <br/>
-                        <p className={style["message"]}>{item.username}</p>
-                      </div>
-                      <div className="col-3">
-                        <p className={style["time"]}></p>
-                      </div>
-                    </div>
-                  </>
-                  )
+                    </>
+                    )
                   }) : console.log("try again")} 
+                </ul>
                 
               </div> 
             </div>

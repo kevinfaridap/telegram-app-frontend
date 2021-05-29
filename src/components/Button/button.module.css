@@ -15,12 +15,17 @@
   justify-content: center;
   box-sizing: border-box;
   border-radius: 70px;
-  color: #7E98DF
+  color: #7E98DF;
+  outline: none !important;
 }
 
 .btn-signup-google:hover{
   background-color: #7E98DF;
   color: white;
+}
+
+.btn-signup-google:focus{
+  background-color: #7E98DF;
 }
 
 @media only screen and (max-width: 600px) {

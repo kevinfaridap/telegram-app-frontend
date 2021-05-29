@@ -27,7 +27,7 @@ function Settings({ match, location, socket}) {
     username: user.username,
     phoneNumber: user.phoneNumber,
     image: user.image,
-    bio: ''
+    bio: user.bio
   })  
 
   const handleFormUpdate = (e) =>{
@@ -81,29 +81,40 @@ function Settings({ match, location, socket}) {
     imageRef.current.value = ""
 
     const id = user.id
-    dispatch(update(formData, id))
-    .then((res)=>{
-      setFormUpdateProfile({
-        firstName: user.firstName,
-        username: user.username,
-        phoneNumber: user.phoneNumber,
-        image: user.image,
-        bio: user.bio
+    if(formUpdateProfile.firstName==null){
+      swal('You have to insert your firstName too')
+    } else if(formUpdateProfile.username==null){
+      swal('You have to insert your username too')
+    } else if(formUpdateProfile.phoneNumber==null){
+      swal('You have to insert your phonenumber too')
+    } else if (formUpdateProfile.bio==null){
+      swal('You have to insert your bio too')
+    } else{
+      dispatch(update(formData, id))
+      .then((res)=>{
+        setFormUpdateProfile({
+          firstName: user.firstName,
+          username: user.username,
+          phoneNumber: user.phoneNumber,
+          image: user.image,
+          bio: user.bio
+        })
+       
+        if(res.message === 'Success update data'){
+          swal(res.message)
+          history.push('/chat')
+        }
+        else if(res.message==='File too large'){
+          swal('File size too large, max size = 2 mb')
+        } else{
+          swal(res.message)
+        }
       })
-     
-      if(res.message === 'Success update data'){
-        swal(res.message)
-        history.push('/chat')
-      }
-      else if(res.message==='File too large'){
-        swal('File size too large, max size = 2 mb')
-      } else{
-        swal(res.message)
-      }
-    })
-    .catch((err)=>{
-      console.log(err);
-    })
+      .catch((err)=>{
+        console.log(err);
+      })
+      
+    }
   }
 
   // const handleChangePassword = (e) =>{
@@ -190,7 +201,7 @@ function Settings({ match, location, socket}) {
                     type="text" 
                     name="firstName"
                     id="firstName"
-                    placeholder={`${user.firstName} `}
+                    placeholder={user.firstName!==''?`${user.firstName} `: `Your first name`}
                     value={formUpdateProfile.firstName}
                     onChange={e=>handleFormUpdate(e)}
                   />
@@ -213,7 +224,7 @@ function Settings({ match, location, socket}) {
                     type="text" 
                     name="username"
                     id="username"
-                    placeholder={`@${user.username}`}
+                    placeholder={user.username!==''?`@${user.username}`: `Your username`}
                     value={formUpdateProfile.username}
                     onChange={e=>handleFormUpdate(e)}
                   />

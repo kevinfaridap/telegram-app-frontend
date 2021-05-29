@@ -26,16 +26,15 @@ const handleFormChange = (e) => {
     axios.post(`${process.env.REACT_APP_API}/users/signin`, data)
     .then((res) => {
       const dataLogin = res.data.data;
-      localStorage.setItem("token", dataLogin.token)
-      if (dataLogin.token) {
-      swal('Success Login')
-      history.push("/chat");
-    //   Router.push('/')
-    //   // window.location.replace("/"); 
-
-    //   // window.history.push('/')
-    //   // Router.reload();
-      
+      // console.log(res.data);
+      if(res.data.data == null){
+        swal(res.data.error.message)
+      } else {
+        localStorage.setItem("token", dataLogin.token)
+        if (dataLogin.token) {
+        swal('Success Login')
+        history.push("/chat");
+        } 
       }
     })
     .catch((err) => {
@@ -43,6 +42,10 @@ const handleFormChange = (e) => {
       swal('Email and Password are incorrect')
     })        
   };
+
+  const handleGoogleBtn = ()=>{
+    history.push("/signup")
+  }
   return (
     <div>
       <div>
@@ -99,7 +102,7 @@ const handleFormChange = (e) => {
                 <Button 
                   type="submit"
                   btn="btn-signup-google"
-                  // onClick={handleSubmit}
+                  onClick={handleGoogleBtn}
                   btnValue="Google"
                 />
                 <p className={style["dont-have-acc"]}>Don't have account? <Link to="/signup">Signup</Link></p>
