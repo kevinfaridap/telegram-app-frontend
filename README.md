@@ -24,11 +24,9 @@
 
 
 <!-- ABOUT THE PROJECT -->
-## Tentang Project
+## About The Project
 
-
-Telegram App adalah aplikasi layanan chat realtime yang memberi kemudahan pada pelanggan untuk komunikasi jarak jauh dengan cepat dan praktis. Terdapat fitur register, login, verifikasi email, realtime chat, dan update profile. Aplikasi ini dibangun dengan menggunakan ReactJs pada sisi Frontend dan ExpressJs pada sisi Backend serta Socket.io.
-
+Telegram App is a realtime chat service application that help customers easily communication. There are other features such as register, login, email verification, realtime chat, and update profiles. This application was built by ReactJs, ExpressJs and Socket.io.
 
 
 ### Built With
@@ -39,11 +37,11 @@ Telegram App adalah aplikasi layanan chat realtime yang memberi kemudahan pada p
 
 
 <!-- GETTING STARTED -->
-## Mulai Project
+## Getting Started
 
-### Pra Syarat
+### Prerequisites
 
-Ini merupakan hal- hal yang diperlukan untuk memulai dan menginstall aplikasi ini.
+This is an example of how to list things you need to use the software and how to install them.
 
 * [nodejs](https://nodejs.org/en/download/)
 
@@ -79,9 +77,9 @@ REACT_APP_SOCKET=[Backend API]
 
    
 <!-- CONTRIBUTING -->
-## Berkontribusi
+## Contributing
 
-Berkontibusi membuat komunitas open source menjadi tempat yang luar biasa untuk belajar, menginspirasi, dan berkreasi. Setiap kontribusi yang Anda berikan ** sangat dihargai **.
+Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are greatly appreciated.
 
 1. Fork the Project
 2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
@@ -92,7 +90,7 @@ Berkontibusi membuat komunitas open source menjadi tempat yang luar biasa untuk 
 
 ## Related Project
 - :white_check_mark: [Backend](https://github.com/kevinfaridap/telegram-app-backend)
-- :rocket: [Telegram Apps [Demo Aplikasi]](https://mytelegram-app.netlify.app/)
+- :rocket: [Telegram Apps [Demo Application]](https://mytelegram-app.netlify.app/)
   
    
 
